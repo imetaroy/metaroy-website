@@ -21,9 +21,9 @@ export default function Hero() {
             initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease: 'easeOut' }}
-            className="inline-flex items-center space-x-2 border border-neutral-200 dark:border-neutral-800/60 bg-white/40 dark:bg-neutral-950/40 backdrop-blur-md px-3.5 py-2 rounded-full mb-8 text-neutral-600 dark:text-neutral-400 text-[10px] sm:text-xs tracking-[0.15em] font-mono"
+            className="inline-flex items-center space-x-2.5 border border-violet-200 dark:border-violet-900 bg-violet-50/50 dark:bg-violet-950/20 backdrop-blur-md px-4 py-2 rounded-full mb-8 text-violet-700 dark:text-violet-300 text-xs sm:text-sm tracking-[0.12em] uppercase font-mono font-medium shadow-[0_2px_12px_rgba(139,92,246,0.06)] dark:shadow-[0_0_20px_rgba(139,92,246,0.08)]"
           >
-            <span className="w-1.5 h-1.5 rounded-full bg-cyan-500 animate-pulse" />
+            <span className="w-2 h-2 rounded-full bg-fuchsia-500 animate-pulse" />
             <span>Hi, I am Prasant Roy</span>
           </motion.div>
 
