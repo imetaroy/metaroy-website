@@ -16,36 +16,42 @@ export default function Hero() {
         {/* Left Column: Headline and CTAs */}
         <div className="lg:col-span-7 flex flex-col items-center lg:items-start text-center lg:text-left select-none order-2 lg:order-1">
           
-          {/* Intro Badge (Explaining metaroy: meta = beyond) */}
+          {/* Intro Eyebrow Label (Hi, I'm Prasant Roy) */}
           <motion.div
             initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease: 'easeOut' }}
-            className="inline-flex items-center space-x-2 border border-neutral-200 dark:border-neutral-800/60 bg-white/40 dark:bg-neutral-950/40 backdrop-blur-md px-3.5 py-2 rounded-full mb-8 text-neutral-600 dark:text-neutral-400 text-[10px] sm:text-xs tracking-[0.2em] uppercase font-mono"
+            className="inline-flex items-center space-x-2 border border-neutral-200 dark:border-neutral-800/60 bg-white/40 dark:bg-neutral-950/40 backdrop-blur-md px-3.5 py-2 rounded-full mb-8 text-neutral-600 dark:text-neutral-400 text-[10px] sm:text-xs tracking-[0.15em] uppercase font-mono"
           >
             <span className="w-1.5 h-1.5 rounded-full bg-cyan-500 animate-pulse" />
-            <span>METAROY // META = SOMETHING BEYOND</span>
+            <span>HI, I'M PRASANT ROY &bull; ENGINEER &rarr; GROWTH LEADER &rarr; AI BUILDER</span>
           </motion.div>
 
-          {/* Big Name Title */}
+          {/* Main Headline */}
           <motion.h1
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1.0, ease: [0.16, 1, 0.3, 1], delay: 0.1 }}
-            className="text-5xl sm:text-7xl md:text-8xl font-semibold tracking-tighter text-transparent bg-clip-text bg-gradient-to-b from-neutral-950 to-neutral-600 dark:from-white dark:to-neutral-400/90 leading-[1.1] py-3 px-4 -mx-4 select-none mb-6"
+            className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-semibold tracking-tight leading-[1.15] py-2 px-4 -mx-4 select-none mb-8 text-neutral-900 dark:text-white"
           >
-            PRASANT ROY
+            <span className="block">Turning strategy into <span className="text-gradient-silver">systems</span>.</span>
+            <span className="block mt-1.5 sm:mt-2.5">Turning systems into <span className="text-gradient-purple">growth</span>.</span>
           </motion.h1>
 
-          {/* Sub-headline / Positioning Statement */}
-          <motion.p
+          {/* Supporting Copy */}
+          <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1.0, ease: [0.16, 1, 0.3, 1], delay: 0.3 }}
-            className="text-base sm:text-xl font-light tracking-wide text-neutral-600 dark:text-neutral-400 max-w-2xl leading-relaxed mb-12 select-none"
+            className="text-base sm:text-lg font-light tracking-wide text-neutral-600 dark:text-neutral-400 max-w-2xl leading-relaxed space-y-4 mb-12 select-none"
           >
-            Building <span className="text-neutral-900 dark:text-white font-medium">intelligent growth systems</span> at the intersection of AI, marketing, and product.
-          </motion.p>
+            <p>
+              I help companies scale through growth strategy, experimentation, AI automation, and data-driven decision making.
+            </p>
+            <p>
+              Combining engineering discipline with commercial thinking to create predictable and measurable business outcomes.
+            </p>
+          </motion.div>
 
           {/* Action Buttons */}
           <motion.div
@@ -55,16 +61,16 @@ export default function Hero() {
             className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-6 justify-center lg:justify-start items-center w-full"
           >
             <a
-              href="#about"
+              href="#experience"
               className="w-full sm:w-auto text-center text-xs font-semibold tracking-[0.15em] uppercase bg-neutral-900 dark:bg-white text-white dark:text-black hover:bg-neutral-800 dark:hover:bg-neutral-200 px-8 py-4 rounded-full transition-all duration-300 shadow-[0_4px_20px_rgba(0,0,0,0.05)] dark:shadow-[0_0_30px_rgba(255,255,255,0.08)] hover:shadow-[0_6px_30px_rgba(0,0,0,0.1)] dark:hover:shadow-[0_0_40px_rgba(255,255,255,0.15)]"
             >
-              Know More About Me
+              Explore My Journey &rarr;
             </a>
             <a
-              href="#experience"
+              href="#projects"
               className="w-full sm:w-auto text-center text-xs font-semibold tracking-[0.15em] uppercase border border-neutral-200 dark:border-neutral-800 hover:border-neutral-300 dark:hover:border-neutral-600 bg-white/40 dark:bg-black/40 backdrop-blur px-8 py-4 rounded-full transition-all duration-300 text-neutral-600 dark:text-neutral-300 hover:text-neutral-900 dark:hover:text-white"
             >
-              View My Professional Experience
+              View Products & Systems &rarr;
             </a>
           </motion.div>
 
