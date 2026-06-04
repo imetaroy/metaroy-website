@@ -32,7 +32,7 @@ export default function Hero() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1.0, ease: [0.16, 1, 0.3, 1], delay: 0.1 }}
-            className="text-5xl sm:text-7xl md:text-8xl font-semibold tracking-tighter text-transparent bg-clip-text bg-gradient-to-b from-white to-neutral-400/90 leading-[1.1] py-3 select-none mb-6"
+            className="text-5xl sm:text-7xl md:text-8xl font-semibold tracking-tighter text-transparent bg-clip-text bg-gradient-to-b from-white to-neutral-400/90 leading-[1.1] py-3 px-4 -mx-4 select-none mb-6"
           >
             PRASANT ROY
           </motion.h1>
