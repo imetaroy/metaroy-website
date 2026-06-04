@@ -62,7 +62,7 @@ function BeliefCard({ belief, idx, activeIdx, setActiveIdx }) {
       }}
       transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
       className={`glass-panel p-8 sm:p-10 rounded-2xl border transition-colors duration-500 relative overflow-hidden flex flex-col justify-between min-h-[300px] ${
-        isActive ? 'border-neutral-800 bg-neutral-950/40' : 'border-neutral-900/40 bg-neutral-950/10'
+        isActive ? 'border-neutral-300 dark:border-neutral-800 bg-white/40 dark:bg-neutral-950/40' : 'border-neutral-200/40 dark:border-neutral-900/40 bg-neutral-50/10 dark:bg-neutral-950/10'
       }`}
     >
       {/* Left connection line segment */}
@@ -76,7 +76,7 @@ function BeliefCard({ belief, idx, activeIdx, setActiveIdx }) {
         }`}
       >
         {/* Background line segment */}
-        <div className="absolute inset-0 bg-neutral-900/40" />
+        <div className="absolute inset-0 bg-neutral-200 dark:bg-neutral-900/40" />
         
         {/* Glowing active line segment */}
         <motion.div 
@@ -89,11 +89,11 @@ function BeliefCard({ belief, idx, activeIdx, setActiveIdx }) {
 
       {/* Connection Node Dot */}
       <div 
-        className="absolute left-[-29px] top-[32px] w-3 h-3 rounded-full border-2 border-neutral-950 z-20 hidden lg:block transition-all duration-500"
-        style={{
-          backgroundColor: isActive ? '#8b5cf6' : '#171717',
-          boxShadow: isActive ? '0 0 10px rgba(139, 92, 246, 0.6)' : 'none',
-        }}
+        className={`absolute left-[-29px] top-[32px] w-3 h-3 rounded-full border-2 border-white dark:border-neutral-950 z-20 hidden lg:block transition-all duration-500 ${
+          isActive 
+            ? 'bg-violet-500 shadow-[0_0_10px_rgba(139,92,246,0.6)]' 
+            : 'bg-neutral-200 dark:bg-neutral-800 shadow-none'
+        }`}
       />
 
       <div className="relative z-10">
@@ -101,20 +101,20 @@ function BeliefCard({ belief, idx, activeIdx, setActiveIdx }) {
           <span className="text-[10px] tracking-widest text-neutral-500 uppercase">
             Belief {belief.num}
           </span>
-          <span className={`text-[11px] font-medium transition-colors duration-300 ${isActive ? 'text-neutral-400' : 'text-neutral-700'}`}>
+          <span className={`text-[11px] font-medium transition-colors duration-300 ${isActive ? 'text-neutral-600 dark:text-neutral-400' : 'text-neutral-400 dark:text-neutral-700'}`}>
             // {belief.num}
           </span>
         </div>
 
-        <h3 className={`text-xl sm:text-2xl font-semibold mb-4 transition-colors duration-300 ${isActive ? 'text-white' : 'text-neutral-400'}`}>
+        <h3 className={`text-xl sm:text-2xl font-semibold mb-4 transition-colors duration-300 ${isActive ? 'text-neutral-900 dark:text-white' : 'text-neutral-400 dark:text-neutral-500'}`}>
           {belief.title}
         </h3>
 
-        <blockquote className={`text-sm sm:text-base italic border-l-2 border-neutral-800 pl-4 mb-4 transition-colors duration-300 ${isActive ? 'text-neutral-200' : 'text-neutral-500'}`}>
+        <blockquote className={`text-sm sm:text-base italic border-l-2 border-neutral-200 dark:border-neutral-800 pl-4 mb-4 transition-colors duration-300 ${isActive ? 'text-neutral-700 dark:text-neutral-200' : 'text-neutral-400 dark:text-neutral-500'}`}>
           "{belief.quote}"
         </blockquote>
 
-        <p className={`text-xs sm:text-sm font-light leading-relaxed mb-6 transition-colors duration-300 ${isActive ? 'text-neutral-400' : 'text-neutral-600'}`}>
+        <p className={`text-xs sm:text-sm font-light leading-relaxed mb-6 transition-colors duration-300 ${isActive ? 'text-neutral-600 dark:text-neutral-400' : 'text-neutral-400 dark:text-neutral-600'}`}>
           {belief.body}
         </p>
       </div>
@@ -126,8 +126,8 @@ function BeliefCard({ belief, idx, activeIdx, setActiveIdx }) {
             key={kw}
             className={`text-[9px] font-mono px-2 py-0.5 rounded border transition-all duration-300 select-none ${
               isActive 
-                ? 'border-neutral-800 bg-neutral-900/40 text-neutral-300' 
-                : 'border-neutral-950 bg-neutral-950/40 text-neutral-600'
+                ? 'border-neutral-300 dark:border-neutral-800 bg-neutral-100/40 dark:bg-neutral-900/40 text-neutral-600 dark:text-neutral-300' 
+                : 'border-neutral-200 dark:border-neutral-950 bg-neutral-50/40 dark:bg-neutral-950/40 text-neutral-400 dark:text-neutral-650'
             }`}
           >
             {kw}
@@ -153,7 +153,7 @@ export default function Philosophy() {
   const gridOpacity = useTransform(scrollYProgress, [0, 0.5, 1], [0.08, 0.22, 0.08]);
 
   return (
-    <section ref={sectionRef} id="philosophy" className="relative min-h-screen py-24 md:py-32 px-6 border-b border-neutral-900/60 z-10">
+    <section ref={sectionRef} id="philosophy" className="relative min-h-screen py-24 md:py-32 px-6 border-b border-neutral-200 dark:border-neutral-900/60 z-10">
       
       {/* Scroll Reacting Background Grid */}
       <motion.div 
@@ -179,10 +179,10 @@ export default function Philosophy() {
               <span className="text-[10px] tracking-[0.35em] text-neutral-500 uppercase font-semibold block mb-3">
                 05 // Philosophy
               </span>
-              <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-light tracking-tight text-white mb-6">
+              <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-light tracking-tight text-neutral-900 dark:text-white mb-6">
                 Principles That <span className="text-gradient-silver font-medium">Guide My Work</span>.
               </h2>
-              <p className="text-neutral-400 font-light text-sm sm:text-base leading-relaxed max-w-lg">
+              <p className="text-neutral-650 dark:text-neutral-400 font-light text-sm sm:text-base leading-relaxed max-w-lg">
                 A framework shaped by software engineering, growth marketing, systems thinking, and artificial intelligence.
               </p>
             </div>
@@ -192,9 +192,9 @@ export default function Philosophy() {
               {CORE_BELIEFS.map((b, idx) => (
                 <div 
                   key={b.num} 
-                  className={`flex items-center gap-3 transition-colors duration-300 ${activeIdx === idx ? 'text-white' : 'text-neutral-600'}`}
+                  className={`flex items-center gap-3 transition-colors duration-300 ${activeIdx === idx ? 'text-neutral-900 dark:text-white' : 'text-neutral-400 dark:text-neutral-605'}`}
                 >
-                  <span className={`h-[1px] transition-all duration-300 ${activeIdx === idx ? 'w-6 bg-white' : 'w-2 bg-neutral-800'}`} />
+                  <span className={`h-[1px] transition-all duration-300 ${activeIdx === idx ? 'w-6 bg-neutral-900 dark:bg-white' : 'w-2 bg-neutral-300 dark:bg-neutral-800'}`} />
                   <span>{b.num} // {b.title.toUpperCase()}</span>
                 </div>
               ))}
@@ -225,7 +225,7 @@ export default function Philosophy() {
                   <div
                     key={belief.num}
                     className={`glass-panel rounded-xl border overflow-hidden transition-all duration-300 ${
-                      isExpanded ? 'border-neutral-800 bg-neutral-950/40' : 'border-neutral-900/60 bg-neutral-950/20'
+                      isExpanded ? 'border-neutral-300 dark:border-neutral-800 bg-white/40 dark:bg-neutral-950/40' : 'border-neutral-200 dark:border-neutral-900/60 bg-neutral-50/20 dark:bg-neutral-950/20'
                     }`}
                   >
                     {/* Header bar */}
@@ -236,7 +236,7 @@ export default function Philosophy() {
                       <div className="flex items-center gap-3">
                         <span className="font-mono text-[10px] text-neutral-500">0{idx + 1}</span>
                         <span className={`text-[13px] font-semibold tracking-tight transition-colors duration-300 ${
-                          isExpanded ? 'text-white' : 'text-neutral-300'
+                          isExpanded ? 'text-neutral-900 dark:text-white' : 'text-neutral-400 dark:text-neutral-300'
                         }`}>
                           {belief.title}
                         </span>
@@ -255,11 +255,11 @@ export default function Philosophy() {
                           exit={{ height: 0, opacity: 0 }}
                           transition={{ duration: 0.3, ease: 'easeInOut' }}
                         >
-                          <div className="px-5 pb-5 pt-1 border-t border-neutral-900/30">
-                            <blockquote className="text-xs sm:text-sm italic text-neutral-200 border-l border-neutral-800 pl-3 mb-3">
+                          <div className="px-5 pb-5 pt-1 border-t border-neutral-200 dark:border-neutral-900/30">
+                            <blockquote className="text-xs sm:text-sm italic text-neutral-700 dark:text-neutral-200 border-l border-neutral-200 dark:border-neutral-800 pl-3 mb-3">
                               "{belief.quote}"
                             </blockquote>
-                            <p className="text-xs text-neutral-400 font-light leading-relaxed mb-4">
+                            <p className="text-xs text-neutral-650 dark:text-neutral-400 font-light leading-relaxed mb-4">
                               {belief.body}
                             </p>
 
@@ -268,7 +268,7 @@ export default function Philosophy() {
                               {belief.keywords.map((kw) => (
                                 <span
                                   key={kw}
-                                  className="text-[9px] font-mono px-2 py-0.5 rounded border border-neutral-800 bg-neutral-900/40 text-neutral-300"
+                                  className="text-[9px] font-mono px-2 py-0.5 rounded border border-neutral-300 dark:border-neutral-800 bg-neutral-100/40 dark:bg-neutral-900/40 text-neutral-650 dark:text-neutral-300"
                                 >
                                   {kw}
                                 </span>

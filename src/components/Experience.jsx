@@ -59,13 +59,13 @@ const EXPERIENCES = [
 
 export default function Experience() {
   return (
-    <section id="experience" className="relative min-h-screen py-24 md:py-32 px-6 border-b border-neutral-900/60 z-10">
+    <section id="experience" className="relative min-h-screen py-24 md:py-32 px-6 border-b border-neutral-200 dark:border-neutral-900/60 z-10">
       <div className="max-w-7xl mx-auto">
         
         {/* Section Title */}
         <div className="mb-20">
           <span className="text-[10px] tracking-[0.35em] text-neutral-500 uppercase font-semibold block mb-3">02 // Experience</span>
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-light tracking-tight text-white">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-light tracking-tight text-neutral-900 dark:text-white">
             Professional <span className="text-gradient-silver font-medium">Trajectory</span>.
           </h2>
         </div>
@@ -74,7 +74,7 @@ export default function Experience() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
           
           {/* Left Column: Timeline */}
-          <div className="lg:col-span-8 relative border-l border-neutral-900 pl-6 sm:pl-10 space-y-16">
+          <div className="lg:col-span-8 relative border-l border-neutral-200 dark:border-neutral-900 pl-6 sm:pl-10 space-y-16">
             {EXPERIENCES.map((exp, idx) => (
               <motion.div
                 key={exp.company}
@@ -88,7 +88,7 @@ export default function Experience() {
                 <div className={`absolute -left-[31px] sm:-left-[47px] top-1.5 w-[11px] h-[11px] rounded-full border transition-all duration-300 ${
                   exp.isEducation 
                     ? 'border-yellow-500/80 bg-yellow-950/40 shadow-[0_0_8px_rgba(234,179,8,0.4)] group-hover:bg-yellow-400 group-hover:scale-125'
-                    : 'border-neutral-800 bg-black group-hover:bg-white group-hover:scale-125'
+                    : 'border-neutral-300 dark:border-neutral-800 bg-white dark:bg-black group-hover:bg-neutral-900 dark:group-hover:bg-white group-hover:scale-125'
                 }`} />
 
                 <div className="grid grid-cols-1 sm:grid-cols-12 gap-6">
@@ -100,8 +100,8 @@ export default function Experience() {
                     <div className="flex items-center gap-2 flex-wrap mb-1">
                       <h3 className={`text-base sm:text-lg font-medium transition-colors ${
                         exp.isEducation 
-                          ? 'text-yellow-400/90 group-hover:text-yellow-300' 
-                          : 'text-white group-hover:text-neutral-300'
+                          ? 'text-yellow-500/90 group-hover:text-yellow-400' 
+                          : 'text-neutral-900 dark:text-white group-hover:text-neutral-600 dark:group-hover:text-neutral-300'
                       }`}>
                         {exp.role}
                       </h3>
@@ -114,14 +114,14 @@ export default function Experience() {
                       )}
                     </div>
 
-                    <span className="text-sm text-neutral-400 font-light block mt-1">{exp.company}</span>
+                    <span className="text-sm text-neutral-500 dark:text-neutral-400 font-light block mt-1">{exp.company}</span>
                     
                     {/* Badge details */}
                     {exp.badge && (
                       <span className={`inline-block text-[9px] font-mono px-2 py-0.5 rounded border mt-2.5 ${
                         exp.isEducation 
                           ? 'border-yellow-500/20 bg-yellow-950/30 text-yellow-400 shadow-[0_0_10px_rgba(234,179,8,0.08)]'
-                          : 'border-neutral-800 bg-neutral-955 text-neutral-400'
+                          : 'border-neutral-200 dark:border-neutral-800 bg-neutral-100/50 dark:bg-neutral-950/40 text-neutral-600 dark:text-neutral-400'
                       }`}>
                         {exp.badge}
                       </span>
@@ -130,41 +130,39 @@ export default function Experience() {
                     {/* Skill Badges */}
                     <div className="flex flex-wrap gap-2 mt-4">
                       {exp.skills.map(skill => (
-                        <span key={skill} className="text-[10px] px-2.5 py-1 rounded bg-neutral-950 border border-neutral-900 text-neutral-400 font-mono">
+                        <span key={skill} className="text-[10px] px-2.5 py-1 rounded bg-neutral-100/50 dark:bg-neutral-950 border border-neutral-200 dark:border-neutral-900 text-neutral-600 dark:text-neutral-400 font-mono">
                           {skill}
                         </span>
                       ))}
                     </div>
-                  </div>
-
-                  {/* Content and stats */}
+                  </div>                    {/* Content and stats */}
                   <div className="sm:col-span-8">
-                    <p className="text-neutral-400 font-light text-sm sm:text-base leading-relaxed mb-6 whitespace-pre-line">
+                    <p className="text-neutral-600 dark:text-neutral-400 font-light text-sm sm:text-base leading-relaxed mb-6 whitespace-pre-line">
                       {exp.description}
                     </p>
 
                     {/* Highlights Panel (Education) or Impact Grid (Jobs) */}
                     {exp.isEducation ? (
-                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 bg-yellow-950/10 border border-yellow-900/20 p-5 rounded-2xl">
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 bg-yellow-500/5 dark:bg-yellow-950/10 border border-yellow-500/10 dark:border-yellow-900/20 p-5 rounded-2xl">
                         {exp.highlights.map(h => (
                           <div key={h.title} className="flex flex-col">
-                            <span className="text-[10px] font-semibold text-yellow-400 tracking-tight mb-1 font-sans">
+                            <span className="text-[10px] font-semibold text-yellow-600 dark:text-yellow-400 tracking-tight mb-1 font-sans">
                               {h.title}
                             </span>
-                            <span className="text-[10px] text-neutral-400 font-light leading-relaxed">
+                            <span className="text-[10px] text-neutral-550 dark:text-neutral-400 font-light leading-relaxed">
                               {h.desc}
                             </span>
                           </div>
                         ))}
                       </div>
                     ) : (
-                      <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 bg-neutral-950/40 border border-neutral-900/60 p-4 sm:p-6 rounded-2xl">
+                      <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 bg-white/40 dark:bg-neutral-950/40 border border-neutral-200 dark:border-neutral-900/60 p-4 sm:p-6 rounded-2xl">
                         {exp.metrics.map(metric => (
                           <div key={metric.label} className="flex flex-col">
-                            <span className="text-xl sm:text-2xl font-mono font-medium text-white">
+                            <span className="text-xl sm:text-2xl font-mono font-medium text-neutral-900 dark:text-white">
                               {metric.value}
                             </span>
-                            <span className="text-[10px] text-neutral-500 tracking-wider uppercase mt-1 font-medium leading-tight">
+                            <span className="text-[10px] text-neutral-550 dark:text-neutral-500 tracking-wider uppercase mt-1 font-medium leading-tight">
                               {metric.label}
                             </span>
                           </div>
@@ -185,9 +183,9 @@ export default function Experience() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-              className="glass-card p-2 rounded-2xl border border-neutral-900 bg-neutral-950/20"
+              className="glass-card p-2 rounded-2xl border border-neutral-200 dark:border-neutral-900 bg-white/40 dark:bg-neutral-950/20"
             >
-              <div className="aspect-square overflow-hidden rounded-xl border border-neutral-900/60 relative">
+              <div className="aspect-square overflow-hidden rounded-xl border border-neutral-200 dark:border-neutral-900/60 relative">
                 <img
                   src="/assets/prasant-experience.png"
                   alt="Prasant Roy Portrait"
@@ -214,7 +212,7 @@ export default function Experience() {
                 href="https://drive.google.com/file/d/1NGY9ayHGpGD3R4lGvvnA2-2DngvlsCK7/view?usp=sharing"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-full text-center text-xs font-semibold tracking-[0.15em] uppercase border border-neutral-800 hover:border-neutral-450 bg-neutral-950 py-4 rounded-full transition-all duration-300 text-neutral-300 hover:text-white"
+                className="w-full text-center text-xs font-semibold tracking-[0.15em] uppercase border border-neutral-200 dark:border-neutral-800 hover:border-neutral-400 dark:hover:border-neutral-500 bg-white dark:bg-neutral-950 py-4 rounded-full transition-all duration-300 text-neutral-600 dark:text-neutral-300 hover:text-neutral-900 dark:hover:text-white shadow-sm dark:shadow-none"
               >
                 Download My CV
               </a>

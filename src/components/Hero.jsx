@@ -21,7 +21,7 @@ export default function Hero() {
             initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease: 'easeOut' }}
-            className="inline-flex items-center space-x-2 border border-neutral-800/60 bg-neutral-950/40 backdrop-blur-md px-3.5 py-2 rounded-full mb-8 text-neutral-400 text-[10px] sm:text-xs tracking-[0.2em] uppercase font-mono"
+            className="inline-flex items-center space-x-2 border border-neutral-200 dark:border-neutral-800/60 bg-white/40 dark:bg-neutral-950/40 backdrop-blur-md px-3.5 py-2 rounded-full mb-8 text-neutral-600 dark:text-neutral-400 text-[10px] sm:text-xs tracking-[0.2em] uppercase font-mono"
           >
             <span className="w-1.5 h-1.5 rounded-full bg-cyan-500 animate-pulse" />
             <span>METAROY // META = TRANSCENDENCE</span>
@@ -32,7 +32,7 @@ export default function Hero() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1.0, ease: [0.16, 1, 0.3, 1], delay: 0.1 }}
-            className="text-5xl sm:text-7xl md:text-8xl font-semibold tracking-tighter text-transparent bg-clip-text bg-gradient-to-b from-white to-neutral-400/90 leading-[1.1] py-3 px-4 -mx-4 select-none mb-6"
+            className="text-5xl sm:text-7xl md:text-8xl font-semibold tracking-tighter text-transparent bg-clip-text bg-gradient-to-b from-neutral-950 to-neutral-600 dark:from-white dark:to-neutral-400/90 leading-[1.1] py-3 px-4 -mx-4 select-none mb-6"
           >
             PRASANT ROY
           </motion.h1>
@@ -42,9 +42,9 @@ export default function Hero() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1.0, ease: [0.16, 1, 0.3, 1], delay: 0.3 }}
-            className="text-base sm:text-xl font-light tracking-wide text-neutral-400 max-w-2xl leading-relaxed mb-12 select-none"
+            className="text-base sm:text-xl font-light tracking-wide text-neutral-600 dark:text-neutral-400 max-w-2xl leading-relaxed mb-12 select-none"
           >
-            Building <span className="text-white font-medium">intelligent growth systems</span> at the intersection of AI, marketing, and product.
+            Building <span className="text-neutral-900 dark:text-white font-medium">intelligent growth systems</span> at the intersection of AI, marketing, and product.
           </motion.p>
 
           {/* Action Buttons */}
@@ -56,13 +56,13 @@ export default function Hero() {
           >
             <a
               href="#about"
-              className="w-full sm:w-auto text-center text-xs font-semibold tracking-[0.15em] uppercase bg-white text-black hover:bg-neutral-200 px-8 py-4 rounded-full transition-all duration-300 shadow-[0_0_30px_rgba(255,255,255,0.08)] hover:shadow-[0_0_40px_rgba(255,255,255,0.15)]"
+              className="w-full sm:w-auto text-center text-xs font-semibold tracking-[0.15em] uppercase bg-neutral-900 dark:bg-white text-white dark:text-black hover:bg-neutral-800 dark:hover:bg-neutral-200 px-8 py-4 rounded-full transition-all duration-300 shadow-[0_4px_20px_rgba(0,0,0,0.05)] dark:shadow-[0_0_30px_rgba(255,255,255,0.08)] hover:shadow-[0_6px_30px_rgba(0,0,0,0.1)] dark:hover:shadow-[0_0_40px_rgba(255,255,255,0.15)]"
             >
               Know More About Me
             </a>
             <a
               href="#experience"
-              className="w-full sm:w-auto text-center text-xs font-semibold tracking-[0.15em] uppercase border border-neutral-800 hover:border-neutral-600 bg-black/40 backdrop-blur px-8 py-4 rounded-full transition-all duration-300 text-neutral-300 hover:text-white"
+              className="w-full sm:w-auto text-center text-xs font-semibold tracking-[0.15em] uppercase border border-neutral-200 dark:border-neutral-800 hover:border-neutral-300 dark:hover:border-neutral-600 bg-white/40 dark:bg-black/40 backdrop-blur px-8 py-4 rounded-full transition-all duration-300 text-neutral-600 dark:text-neutral-300 hover:text-neutral-900 dark:hover:text-white"
             >
               View My Professional Experience
             </a>

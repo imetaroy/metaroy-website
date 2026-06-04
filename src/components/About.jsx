@@ -36,7 +36,7 @@ function StatCounter({ value, duration = 1.6, suffix = "", prefix = "", decimals
   const formatted = decimals > 0 ? displayValue.toFixed(decimals) : Math.floor(displayValue).toString();
 
   return (
-    <span ref={ref} className="font-mono text-3xl sm:text-4xl font-light text-white tracking-tighter">
+    <span ref={ref} className="font-mono text-3xl sm:text-4xl font-light text-neutral-900 dark:text-white tracking-tighter">
       {prefix}{formatted}{suffix}
     </span>
   );
@@ -163,8 +163,8 @@ export default function About() {
             <span className="text-[10px] tracking-[0.35em] text-neutral-500 uppercase font-semibold block mb-3">
               01 // Profile
             </span>
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-light tracking-tight text-white mb-4">
-              Building Growth Systems <span className="text-gradient-silver font-medium block md:inline">That Scale.</span>
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-light tracking-tight text-neutral-900 dark:text-white mb-4">
+              Building Growth <span className="text-gradient-silver font-medium">Systems That Scale</span>.
             </h2>
             
             {/* Smooth Rotating Headline reel */}
@@ -176,7 +176,7 @@ export default function About() {
                   animate={{ y: 0, opacity: 1 }}
                   exit={{ y: -20, opacity: 0 }}
                   transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-                  className="text-xs sm:text-sm font-mono text-neutral-400 tracking-wider font-semibold"
+                  className="text-xs sm:text-sm font-mono text-neutral-500 dark:text-neutral-400 tracking-wider font-semibold"
                 >
                   {ROTATING_HEADLINES[headlineIdx]}
                 </motion.div>
@@ -184,7 +184,7 @@ export default function About() {
             </div>
           </div>
 
-          <p className="text-neutral-400 max-w-xl font-light text-sm sm:text-base leading-relaxed lg:w-1/3">
+          <p className="text-neutral-600 dark:text-neutral-400 max-w-xl font-light text-sm sm:text-base leading-relaxed lg:w-1/3">
             For more than 13 years, I've operated at the intersection of technology, growth, and business strategy.<br/><br/>
             My career began in software engineering, evolved into digital transformation consulting, and expanded into leading large-scale customer acquisition programs generating millions in annual revenue.<br/><br/>
             Today, I focus on building intelligent systems that combine performance marketing, automation, analytics, and AI to create scalable growth.
@@ -201,9 +201,9 @@ export default function About() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-100px" }}
               transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-              className="glass-card p-2.5 rounded-2xl border border-neutral-900 bg-neutral-950/20 group relative overflow-hidden text-center"
+              className="glass-card p-2.5 rounded-2xl border border-neutral-200 dark:border-neutral-900 bg-white/40 dark:bg-neutral-950/20 group relative overflow-hidden text-center"
             >
-              <div className="aspect-[4/5] overflow-hidden rounded-xl border border-neutral-900/60 relative">
+              <div className="aspect-[4/5] overflow-hidden rounded-xl border border-neutral-200 dark:border-neutral-900/60 relative">
                 <motion.img
                   src="/assets/prasant-about.png"
                   alt="Prasant Roy Profile"
@@ -215,7 +215,7 @@ export default function About() {
               </div>
               
               <div className="p-4 space-y-1">
-                <span className="text-[11px] font-semibold text-white tracking-widest uppercase block">
+                <span className="text-[11px] font-semibold text-neutral-900 dark:text-white tracking-widest uppercase block">
                   PRASANT ROY
                 </span>
                 <span className="text-[9px] font-mono text-neutral-500 tracking-wider block">
@@ -224,12 +224,12 @@ export default function About() {
                 <span className="text-[9px] font-mono text-neutral-500 block">
                   Bangalore, India
                 </span>
-                <span className="text-[8px] font-mono text-neutral-600 block pt-1 border-t border-neutral-950 mt-1">
+                <span className="text-[8px] font-mono text-neutral-600 block pt-1 border-t border-neutral-200 dark:border-neutral-950 mt-1">
                   Engineer → Marketer → AI Builder
                 </span>
                 
                 {/* Blinking open indicator */}
-                <div className="flex items-center justify-center gap-2 mt-4 pt-2 text-[9px] font-mono text-neutral-400">
+                <div className="flex items-center justify-center gap-2 mt-4 pt-2 text-[9px] font-mono text-neutral-500 dark:text-neutral-400">
                   <span className="relative flex h-2 w-2">
                     <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
                     <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
@@ -259,18 +259,18 @@ export default function About() {
                     </span>
                   </div>
                   
-                  <h3 className="text-base font-semibold text-white mb-2 group-hover:text-neutral-300 transition-colors">
+                  <h3 className="text-base font-semibold text-neutral-900 dark:text-white mb-2 group-hover:text-neutral-600 dark:group-hover:text-neutral-300 transition-colors">
                     {item.title}
                   </h3>
                   
-                  <p className="text-neutral-400 text-xs font-light leading-relaxed mb-4">
+                  <p className="text-neutral-600 dark:text-neutral-400 text-xs font-light leading-relaxed mb-4">
                     {item.desc}
                   </p>
                 </div>
 
-                <div className="flex flex-wrap gap-1.5 pt-4 border-t border-neutral-900/60 mt-2">
+                <div className="flex flex-wrap gap-1.5 pt-4 border-t border-neutral-200 dark:border-neutral-900/60 mt-2">
                   {item.highlights.map(h => (
-                    <span key={h} className="text-[8px] font-mono text-neutral-500 border border-neutral-955 bg-neutral-950/40 px-2 py-0.5 rounded select-none">
+                    <span key={h} className="text-[8px] font-mono text-neutral-500 border border-neutral-200 dark:border-neutral-900 bg-neutral-100/50 dark:bg-neutral-950/40 px-2 py-0.5 rounded select-none">
                       {h}
                     </span>
                   ))}
@@ -280,7 +280,7 @@ export default function About() {
           </div>
 
           {/* Right Column: Flagship Metrics Panel */}
-          <div className="lg:col-span-4 flex flex-col justify-center border-t lg:border-t-0 lg:border-l border-neutral-900 pt-12 lg:pt-0 lg:pl-10">
+          <div className="lg:col-span-4 flex flex-col justify-center border-t lg:border-t-0 lg:border-l border-neutral-200 dark:border-neutral-900 pt-12 lg:pt-0 lg:pl-10">
             <div className="flex flex-col space-y-10">
               {METRICS_LIST.map((stat, idx) => (
                 <motion.div
@@ -292,7 +292,7 @@ export default function About() {
                   className="flex flex-col select-none"
                 >
                   {stat.isStatic ? (
-                    <span className="text-lg sm:text-xl font-semibold text-white tracking-tight font-sans mb-1 py-1">
+                    <span className="text-lg sm:text-xl font-semibold text-neutral-900 dark:text-white tracking-tight font-sans mb-1 py-1">
                       {stat.value}
                     </span>
                   ) : (
@@ -304,15 +304,15 @@ export default function About() {
                     />
                   )}
                   
-                  <span className="text-[10px] tracking-wider uppercase text-neutral-400 font-semibold mt-1.5">
+                  <span className="text-[10px] tracking-wider uppercase text-neutral-600 dark:text-neutral-400 font-semibold mt-1.5">
                     {stat.label}
                   </span>
                   
-                  <span className="text-[9px] font-mono text-neutral-500 mt-1 block tracking-wider uppercase">
+                  <span className="text-[9px] font-mono text-neutral-500 dark:text-neutral-500 mt-1 block tracking-wider uppercase">
                     {stat.supportingLabel}
                   </span>
                   
-                  <p className="text-neutral-500 text-[11px] font-light leading-relaxed mt-2.5">
+                  <p className="text-neutral-500 dark:text-neutral-500 text-[11px] font-light leading-relaxed mt-2.5">
                     {stat.desc}
                   </p>
                 </motion.div>
@@ -323,7 +323,7 @@ export default function About() {
         </div>
 
         {/* Career Timeline Strip */}
-        <div className="mt-16 pt-12 border-t border-neutral-900 relative">
+        <div className="mt-16 pt-12 border-t border-neutral-200 dark:border-neutral-900 relative">
           <div className="text-[10px] font-mono text-neutral-500 uppercase tracking-widest mb-10 select-none text-center md:text-left">
             Professional Evolution
           </div>
@@ -331,7 +331,7 @@ export default function About() {
           {/* Desktop Horizontal Timeline Track */}
           <div className="hidden md:block relative pb-8 select-none">
             {/* Background line */}
-            <div className="absolute top-2.5 left-2 right-2 h-[1px] bg-neutral-900/60" />
+            <div className="absolute top-2.5 left-2 right-2 h-[1px] bg-neutral-200 dark:bg-neutral-900/60" />
             {/* Scrolling glow line overlay */}
             <motion.div 
               className="absolute top-2.5 left-2 h-[1px] bg-gradient-to-r from-blue-500 via-violet-500 to-cyan-500 origin-left"
@@ -342,11 +342,11 @@ export default function About() {
               {TIMELINE_PHASES.map((phase, idx) => (
                 <div key={phase.label} className="flex flex-col items-center text-center px-2">
                   {/* Timeline dot marker */}
-                  <div className="w-5 h-5 rounded-full border border-neutral-950 bg-neutral-950 flex items-center justify-center relative">
-                    <div className="w-1.5 h-1.5 rounded-full bg-neutral-800 group-hover:bg-neutral-600 transition-colors" />
+                  <div className="w-5 h-5 rounded-full border border-neutral-200 dark:border-neutral-950 bg-white dark:bg-neutral-950 flex items-center justify-center relative">
+                    <div className="w-1.5 h-1.5 rounded-full bg-neutral-300 dark:bg-neutral-800 group-hover:bg-neutral-500 dark:group-hover:bg-neutral-600 transition-colors" />
                   </div>
                   
-                  <span className="text-[11px] font-semibold text-white tracking-tight mt-5">
+                  <span className="text-[11px] font-semibold text-neutral-900 dark:text-white tracking-tight mt-5">
                     {phase.label}
                   </span>
                   <span className="text-[9px] font-mono text-neutral-500 mt-1">
@@ -360,7 +360,7 @@ export default function About() {
           {/* Mobile Vertical Timeline Track */}
           <div className="md:hidden relative pl-6 pb-6 select-none">
             {/* Background vertical line */}
-            <div className="absolute top-2 bottom-2 left-2.5 w-[1px] bg-neutral-900/60" />
+            <div className="absolute top-2 bottom-2 left-2.5 w-[1px] bg-neutral-200 dark:bg-neutral-900/60" />
             {/* Scrolling height indicator line */}
             <motion.div 
               className="absolute top-2 left-2.5 w-[1px] bg-gradient-to-b from-blue-500 via-violet-500 to-cyan-500 origin-top"
@@ -371,12 +371,12 @@ export default function About() {
               {TIMELINE_PHASES.map((phase, idx) => (
                 <div key={phase.label} className="flex gap-4 items-start">
                   {/* Node Dot */}
-                  <div className="w-4 h-4 rounded-full border border-neutral-950 bg-neutral-950 flex items-center justify-center -translate-x-[22px] mt-0.5">
-                    <div className="w-1.5 h-1.5 rounded-full bg-neutral-800" />
+                  <div className="w-4 h-4 rounded-full border border-neutral-200 dark:border-neutral-950 bg-white dark:bg-neutral-950 flex items-center justify-center -translate-x-[22px] mt-0.5">
+                    <div className="w-1.5 h-1.5 rounded-full bg-neutral-300 dark:bg-neutral-800" />
                   </div>
                   
                   <div className="-ml-4 flex flex-col">
-                    <span className="text-[11px] font-semibold text-white tracking-tight">
+                    <span className="text-[11px] font-semibold text-neutral-900 dark:text-white tracking-tight">
                       {phase.label}
                     </span>
                     <span className="text-[9px] font-mono text-neutral-500 mt-0.5">

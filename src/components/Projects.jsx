@@ -73,7 +73,7 @@ function ProjectCard({ project, idx }) {
       transition={{ duration: 0.8, delay: idx * 0.08, ease: [0.16, 1, 0.3, 1] }}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
-      className={`glass-card rounded-2xl border border-neutral-900 bg-neutral-950/20 overflow-hidden flex flex-col justify-between transition-all duration-500 hover:border-neutral-800 hover:-translate-y-2 hover:bg-neutral-950/40 relative group ${
+      className={`glass-card rounded-2xl border border-neutral-200 dark:border-neutral-900 bg-white/40 dark:bg-neutral-950/20 overflow-hidden flex flex-col justify-between transition-all duration-500 hover:border-neutral-450 dark:hover:border-neutral-800 hover:-translate-y-2 hover:bg-white/95 dark:hover:bg-neutral-950/40 relative group ${
         isWide ? 'lg:col-span-2' : 'lg:col-span-1'
       }`}
       style={{
@@ -93,29 +93,29 @@ function ProjectCard({ project, idx }) {
               </span>
               <div className="flex items-center space-x-2">
                 {isHovered && (
-                  <span className="text-[8px] font-mono text-neutral-400 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                  <span className="text-[8px] font-mono text-neutral-500 dark:text-neutral-400 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                     Open Project //
                   </span>
                 )}
                 <span className={`text-[9px] font-mono px-2 py-0.5 rounded-full border ${
                   project.badge === 'Featured'
-                    ? 'border-yellow-500/20 bg-yellow-950/30 text-yellow-400 font-semibold shadow-[0_0_10px_rgba(234,179,8,0.08)]'
+                    ? 'border-yellow-500/20 bg-yellow-500/10 dark:bg-yellow-950/30 text-yellow-600 dark:text-yellow-400 font-semibold shadow-[0_0_10px_rgba(234,179,8,0.04)] dark:shadow-[0_0_10px_rgba(234,179,8,0.08)]'
                     : project.badge === 'Live'
-                      ? 'border-emerald-500/20 bg-emerald-950/30 text-emerald-400'
+                      ? 'border-emerald-500/20 bg-emerald-500/10 dark:bg-emerald-950/30 text-emerald-600 dark:text-emerald-400'
                       : project.badge === 'Beta'
-                        ? 'border-indigo-500/20 bg-indigo-950/30 text-indigo-400'
-                        : 'border-neutral-800 bg-neutral-900/60 text-neutral-400'
+                        ? 'border-indigo-500/20 bg-indigo-500/10 dark:bg-indigo-950/30 text-indigo-600 dark:text-indigo-400'
+                        : 'border-neutral-200 dark:border-neutral-800 bg-neutral-100/60 dark:bg-neutral-900/60 text-neutral-500 dark:text-neutral-400'
                 }`}>
                   {project.badge}
                 </span>
               </div>
             </div>
 
-            <h3 className="text-xl font-semibold text-white mb-3 group-hover:text-neutral-200 transition-colors">
+            <h3 className="text-xl font-semibold text-neutral-900 dark:text-white mb-3 group-hover:text-neutral-600 dark:group-hover:text-neutral-200 transition-colors">
               {project.title}
             </h3>
 
-            <p className="text-xs text-neutral-400 font-light leading-relaxed mb-6 whitespace-pre-line">
+            <p className="text-xs text-neutral-600 dark:text-neutral-400 font-light leading-relaxed mb-6 whitespace-pre-line">
               {project.desc}
             </p>
 
@@ -129,7 +129,7 @@ function ProjectCard({ project, idx }) {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.6, delay: i * 0.1, ease: 'easeOut' }}
-                    className="p-4 rounded-xl border border-neutral-900 bg-neutral-950/40 transition-all duration-300 hover:border-neutral-800 hover:bg-neutral-900/5 flex flex-col justify-between group/metric relative overflow-hidden shadow-inner"
+                    className="p-4 rounded-xl border border-neutral-200 dark:border-neutral-900 bg-white/40 dark:bg-neutral-950/40 transition-all duration-300 hover:border-neutral-450 dark:hover:border-neutral-800 hover:bg-neutral-100/40 dark:hover:bg-neutral-900/5 flex flex-col justify-between group/metric relative overflow-hidden shadow-sm dark:shadow-inner"
                   >
                     {/* Glowing background radial hover spot */}
                     <div 
@@ -142,7 +142,7 @@ function ProjectCard({ project, idx }) {
                     <div className="relative z-10 flex flex-col h-full justify-between">
                       <div>
                         {/* Large metric counting up */}
-                        <div className="text-xl sm:text-2xl font-semibold font-mono tracking-tighter text-white">
+                        <div className="text-xl sm:text-2xl font-semibold font-mono tracking-tighter text-neutral-900 dark:text-white">
                           <StatCounter 
                             value={h.value} 
                             prefix={h.prefix} 
@@ -153,19 +153,19 @@ function ProjectCard({ project, idx }) {
                         </div>
 
                         {/* Title */}
-                        <div className="text-[9px] font-semibold text-neutral-200 tracking-wider uppercase mt-2 mb-1">
+                        <div className="text-[9px] font-semibold text-neutral-850 dark:text-neutral-200 tracking-wider uppercase mt-2 mb-1">
                           {h.title}
                         </div>
                       </div>
 
                       <div>
                         {/* Company Badge / Supporting Label */}
-                        <div className="text-[8px] font-mono text-neutral-400 font-medium mb-1 border-b border-neutral-900/60 pb-1 mt-2">
+                        <div className="text-[8px] font-mono text-neutral-500 dark:text-neutral-400 font-medium mb-1 border-b border-neutral-200 dark:border-neutral-900/60 pb-1 mt-2">
                           {h.company}
                         </div>
 
                         {/* Contextual Description */}
-                        <div className="text-[8px] text-neutral-500 font-light leading-normal">
+                        <div className="text-[8px] text-neutral-600 dark:text-neutral-500 font-light leading-normal">
                           {h.desc}
                         </div>
                       </div>
@@ -179,9 +179,9 @@ function ProjectCard({ project, idx }) {
           <div>
             {/* Tech stack listing */}
             {project.tech && (
-              <div className="flex flex-wrap gap-2 mb-6 pt-4 border-t border-neutral-900/40">
+              <div className="flex flex-wrap gap-2 mb-6 pt-4 border-t border-neutral-200 dark:border-neutral-900/40">
                 {project.tech.map((t) => (
-                  <span key={t} className="text-[9px] font-mono text-neutral-500 select-none">
+                  <span key={t} className="text-[9px] font-mono text-neutral-450 dark:text-neutral-500 select-none">
                     #{t}
                   </span>
                 ))}
@@ -189,7 +189,7 @@ function ProjectCard({ project, idx }) {
             )}
 
             {/* Dynamic arrow sliding CTA */}
-            <div className="flex items-center text-xs font-semibold text-white tracking-widest uppercase font-mono mt-2 select-none">
+            <div className="flex items-center text-xs font-semibold text-neutral-900 dark:text-white tracking-widest uppercase font-mono mt-2 select-none">
               <span>{project.cta}</span>
               <motion.span 
                 animate={isHovered ? { x: 5 } : { x: 0 }}
@@ -203,9 +203,9 @@ function ProjectCard({ project, idx }) {
         </div>
 
         {/* Visual Mockup Showcase Area */}
-        <div className={`bg-neutral-900/10 p-6 flex items-center justify-center border-t border-neutral-900/40 ${
+        <div className={`bg-neutral-100/10 dark:bg-neutral-900/10 p-6 flex items-center justify-center border-t border-neutral-200 dark:border-neutral-900/40 ${
           isWide 
-            ? 'lg:w-[45%] lg:border-t-0 lg:border-l lg:border-neutral-900/40 min-h-[280px]' 
+            ? 'lg:w-[45%] lg:border-t-0 lg:border-l lg:border-neutral-200 dark:border-neutral-900/40 min-h-[280px]' 
             : 'w-full h-56'
         }`}>
           <div className="w-full h-full">
@@ -409,7 +409,7 @@ export default function Projects() {
   ];
 
   return (
-    <section id="projects" className="relative min-h-screen py-24 md:py-32 px-6 border-b border-neutral-900/60 z-10 overflow-hidden">
+    <section id="projects" className="relative min-h-screen py-24 md:py-32 px-6 border-b border-neutral-200 dark:border-neutral-900/60 z-10 overflow-hidden">
       
       {/* Background ambient lighting */}
       <div className="absolute right-0 top-[30%] w-[350px] h-[350px] rounded-full bg-cyan-500/3 blur-[100px] pointer-events-none" />
@@ -423,11 +423,11 @@ export default function Projects() {
             <span className="text-[10px] tracking-[0.35em] text-neutral-500 uppercase font-semibold block mb-3">
               03 // Showcase
             </span>
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-light tracking-tight text-white mb-4">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-light tracking-tight text-neutral-900 dark:text-white mb-4">
               Products & <span className="text-gradient-silver font-medium">Systems</span>.
             </h2>
           </div>
-          <p className="text-neutral-400 max-w-lg mt-4 md:mt-0 font-light text-sm sm:text-base leading-relaxed">
+          <p className="text-neutral-600 dark:text-neutral-400 max-w-lg mt-4 md:mt-0 font-light text-sm sm:text-base leading-relaxed">
             Real-world tools, experiments, and platforms built at the intersection of growth, AI, automation, and engineering.
           </p>
         </div>

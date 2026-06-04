@@ -25,14 +25,14 @@ function SkillBar({ name, score, barColorClass, glowColor, idx, isInView }) {
   return (
     <div className="space-y-1.5 group/row select-none">
       {/* Skill Name */}
-      <div className="text-[11px] text-neutral-400 group-hover/row:text-white transition-colors duration-300 font-medium">
+      <div className="text-[11px] text-neutral-500 group-hover/row:text-neutral-900 dark:text-neutral-400 dark:group-hover/row:text-white transition-colors duration-300 font-medium">
         {name}
       </div>
       
       {/* Progress Bar and Score */}
       <div className="flex items-center gap-3">
         {/* Skill Bar Container */}
-        <div className="h-[6px] flex-1 bg-neutral-900 rounded-full overflow-hidden border border-neutral-950 relative group-hover/row:border-neutral-800 transition-colors duration-300">
+        <div className="h-[6px] flex-1 bg-neutral-250 dark:bg-neutral-900 rounded-full overflow-hidden border border-neutral-300 dark:border-neutral-950 relative group-hover/row:border-neutral-400 dark:group-hover/row:border-neutral-800 transition-colors duration-300">
           <motion.div
             initial={{ width: '0%' }}
             animate={isInView ? { width: `${(score / 10) * 100}%` } : { width: '0%' }}
@@ -45,7 +45,7 @@ function SkillBar({ name, score, barColorClass, glowColor, idx, isInView }) {
         </div>
         
         {/* Score Counter */}
-        <span className="font-mono text-[10px] text-neutral-500 min-w-[45px] text-right font-medium group-hover/row:text-neutral-200 transition-colors duration-300">
+        <span className="font-mono text-[10px] text-neutral-500 min-w-[45px] text-right font-medium group-hover/row:text-neutral-800 dark:group-hover/row:text-neutral-200 transition-colors duration-300">
           <motion.span>{rounded}</motion.span>
         </span>
       </div>
@@ -79,13 +79,13 @@ function ProgressionTrack({ activeDomain, setActiveDomain }) {
               onMouseLeave={() => setActiveDomain(null)}
               className={`relative flex flex-col p-4 rounded-xl border transition-all duration-300 cursor-pointer ${
                 isHighlighted 
-                  ? 'border-neutral-700 bg-neutral-900/30 shadow-[0_0_20px_rgba(255,255,255,0.02)]' 
-                  : 'border-neutral-900/60 bg-neutral-950/20 hover:border-neutral-800'
+                  ? 'border-neutral-400 dark:border-neutral-700 bg-white/60 dark:bg-neutral-900/30 shadow-sm dark:shadow-[0_0_20px_rgba(255,255,255,0.02)]' 
+                  : 'border-neutral-250 dark:border-neutral-900/60 bg-neutral-100/10 dark:bg-neutral-950/20 hover:border-neutral-300 dark:hover:border-neutral-800'
               }`}
             >
               {/* Connective arrows for larger screen layouts */}
               {idx < phases.length - 1 && (
-                <div className="hidden lg:block absolute -right-2 top-1/2 -translate-y-1/2 z-20 text-neutral-700 font-mono text-xs">
+                <div className="hidden lg:block absolute -right-2 top-1/2 -translate-y-1/2 z-20 text-neutral-400 dark:text-neutral-700 font-mono text-xs">
                   →
                 </div>
               )}
@@ -93,12 +93,12 @@ function ProgressionTrack({ activeDomain, setActiveDomain }) {
               <div className="flex items-center gap-2">
                 <span className="font-mono text-[10px] text-neutral-500">0{idx + 1}</span>
                 <span className={`text-[11px] font-medium tracking-tight transition-colors duration-300 ${
-                  isHighlighted ? 'text-white' : 'text-neutral-300'
+                  isHighlighted ? 'text-neutral-900 dark:text-white' : 'text-neutral-600 dark:text-neutral-300'
                 }`}>
                   {phase.label}
                 </span>
               </div>
-              <span className="text-[9px] text-neutral-500 font-light mt-1 pl-4">
+              <span className="text-[9px] text-neutral-550 dark:text-neutral-500 font-light mt-1 pl-4">
                 {phase.subtitle}
               </span>
 
@@ -158,8 +158,8 @@ function DomainCard({ domain, domainIdx, activeDomain, setActiveDomain }) {
         }}
         className={`glass-panel p-8 rounded-2xl flex flex-col border transition-all duration-500 min-h-[560px] relative group overflow-hidden ${
           isHighlighted 
-            ? `${domain.borderHighlight} bg-neutral-950/40` 
-            : 'border-neutral-900 bg-neutral-950/20'
+            ? `${domain.borderHighlight} bg-white/40 dark:bg-neutral-950/40` 
+            : 'border-neutral-250 dark:border-neutral-900 bg-neutral-50/20 dark:bg-neutral-950/20'
         }`}
         style={{
           boxShadow: isHighlighted ? `0 0 40px ${domain.glowColor}14` : 'none'
@@ -193,19 +193,19 @@ function DomainCard({ domain, domainIdx, activeDomain, setActiveDomain }) {
               <span className={`text-[9px] px-2 py-0.5 rounded-full border transition-all duration-300 ${
                 isHighlighted 
                   ? `${domain.averageBadgeBorder} ${domain.averageBadgeBg} ${domain.averageBadgeText} font-mono font-semibold`
-                  : 'border-neutral-800 bg-neutral-950/60 text-neutral-400 font-mono font-medium'
+                  : 'border-neutral-200 dark:border-neutral-800 bg-white/60 dark:bg-neutral-950/60 text-neutral-500 dark:text-neutral-400 font-mono font-medium'
               }`}>
                 AVG: {averageScore}/10
               </span>
             </div>
             
             <h3 className={`text-lg font-semibold transition-colors duration-300 ${
-              isHighlighted ? 'text-white' : 'text-neutral-200'
+              isHighlighted ? 'text-neutral-950 dark:text-white' : 'text-neutral-800 dark:text-neutral-200'
             }`}>
               {domain.category}
             </h3>
             
-            <p className="text-xs text-neutral-400 font-light leading-relaxed mb-6">
+            <p className="text-xs text-neutral-650 dark:text-neutral-400 font-light leading-relaxed mb-6">
               {domain.desc}
             </p>
           </div>
@@ -234,7 +234,7 @@ function DomainCard({ domain, domainIdx, activeDomain, setActiveDomain }) {
         viewport={{ once: true }}
         transition={{ delay: 0.5 + domainIdx * 0.1 }}
         className={`text-center mt-4 text-[10px] font-mono tracking-[0.25em] uppercase select-none font-medium transition-colors duration-300 ${
-          isHighlighted ? 'text-neutral-300' : 'text-neutral-500'
+          isHighlighted ? 'text-neutral-750 dark:text-neutral-300' : 'text-neutral-450 dark:text-neutral-505'
         }`}
       >
         {domain.label}
@@ -253,8 +253,8 @@ const SKILL_DOMAINS = [
     borderHighlight: 'border-blue-500/30',
     barColor: 'bg-gradient-to-r from-blue-700 via-blue-500 to-cyan-400',
     averageBadgeBorder: 'border-blue-500/20',
-    averageBadgeBg: 'bg-blue-950/40',
-    averageBadgeText: 'text-blue-400',
+    averageBadgeBg: 'bg-blue-500/10 dark:bg-blue-950/40',
+    averageBadgeText: 'text-blue-605 dark:text-blue-405',
     skills: [
       { name: 'Performance Marketing', score: 10.0 },
       { name: 'Google Ads', score: 10.0 },
@@ -275,8 +275,8 @@ const SKILL_DOMAINS = [
     borderHighlight: 'border-violet-500/30',
     barColor: 'bg-gradient-to-r from-purple-700 via-violet-500 to-pink-500',
     averageBadgeBorder: 'border-violet-500/20',
-    averageBadgeBg: 'bg-violet-950/40',
-    averageBadgeText: 'text-violet-400',
+    averageBadgeBg: 'bg-violet-500/10 dark:bg-violet-950/40',
+    averageBadgeText: 'text-violet-605 dark:text-violet-405',
     skills: [
       { name: 'AI Workflow Design', score: 8.5 },
       { name: 'Prompt Engineering', score: 9.0 },
@@ -297,8 +297,8 @@ const SKILL_DOMAINS = [
     borderHighlight: 'border-cyan-500/30',
     barColor: 'bg-gradient-to-r from-teal-600 via-cyan-500 to-blue-400',
     averageBadgeBorder: 'border-cyan-500/20',
-    averageBadgeBg: 'bg-cyan-950/40',
-    averageBadgeText: 'text-cyan-400',
+    averageBadgeBg: 'bg-cyan-500/10 dark:bg-cyan-950/40',
+    averageBadgeText: 'text-cyan-605 dark:text-cyan-405',
     skills: [
       { name: 'SQL', score: 9.0 },
       { name: 'Data Analysis', score: 9.0 },
@@ -316,16 +316,16 @@ export default function Skills() {
   const [activeDomain, setActiveDomain] = useState(null);
 
   return (
-    <section id="skills" className="relative min-h-screen py-24 md:py-32 px-6 border-b border-neutral-900/60 z-10 overflow-hidden">
+    <section id="skills" className="relative min-h-screen py-24 md:py-32 px-6 border-b border-neutral-200 dark:border-neutral-900/60 z-10 overflow-hidden">
       <div className="max-w-7xl mx-auto">
         
         {/* Section Title */}
         <div className="mb-16 max-w-4xl select-none">
           <span className="text-[10px] tracking-[0.35em] text-neutral-500 uppercase font-semibold block mb-3">04 // Competencies</span>
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-light tracking-tight text-white mb-6">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-light tracking-tight text-neutral-900 dark:text-white mb-6">
             Core Skill <span className="text-gradient-silver font-medium">Spectrum</span>.
           </h2>
-          <p className="text-neutral-400 font-light text-sm sm:text-base leading-relaxed max-w-3xl">
+          <p className="text-neutral-650 dark:text-neutral-400 font-light text-sm sm:text-base leading-relaxed max-w-3xl">
             A unique blend of growth strategy, AI systems thinking, and technical execution developed across software engineering, digital transformation consulting, and global performance marketing leadership.
           </p>
         </div>
