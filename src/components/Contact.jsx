@@ -131,15 +131,11 @@ function CollaborationCard({ title, desc, icon, topics, idx }) {
         </div>
       </div>
 
-      {/* Sliding slide-up CTA reveal */}
-      <div className="relative z-10 mt-6 overflow-hidden h-5 flex items-center">
-        <motion.div
-          animate={isHovered ? { y: 0, opacity: 1 } : { y: 16, opacity: 0 }}
-          transition={{ duration: 0.3, ease: 'easeOut' }}
-          className="text-[10px] font-semibold text-white tracking-widest uppercase flex items-center gap-1 font-mono select-none"
-        >
+      {/* CTA (Always Visible) */}
+      <div className="relative z-10 mt-6 flex items-center">
+        <div className="text-[10px] font-semibold text-neutral-400 group-hover:text-white tracking-widest uppercase flex items-center gap-1 font-mono transition-colors duration-300 select-none">
           Let's Discuss <span className="text-[9px] group-hover:translate-x-1 transition-transform duration-300">→</span>
-        </motion.div>
+        </div>
       </div>
     </motion.a>
   );
