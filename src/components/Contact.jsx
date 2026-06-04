@@ -214,7 +214,7 @@ export default function Contact() {
           </div>
 
           {/* Stage 1: Collaboration Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-5xl">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 w-full">
             {COLLAB_CARDS.map((card, idx) => (
               <CollaborationCard
                 key={card.title}
