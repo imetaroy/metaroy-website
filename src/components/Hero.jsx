@@ -21,10 +21,10 @@ export default function Hero() {
             initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease: 'easeOut' }}
-            className="inline-flex items-center space-x-2 border border-neutral-200 dark:border-neutral-800/60 bg-white/40 dark:bg-neutral-950/40 backdrop-blur-md px-3.5 py-2 rounded-full mb-8 text-neutral-600 dark:text-neutral-400 text-[10px] sm:text-xs tracking-[0.15em] uppercase font-mono"
+            className="inline-flex items-center space-x-2 border border-neutral-200 dark:border-neutral-800/60 bg-white/40 dark:bg-neutral-950/40 backdrop-blur-md px-3.5 py-2 rounded-full mb-8 text-neutral-600 dark:text-neutral-400 text-[10px] sm:text-xs tracking-[0.15em] font-mono"
           >
             <span className="w-1.5 h-1.5 rounded-full bg-cyan-500 animate-pulse" />
-            <span>HI, I'M PRASANT ROY &bull; ENGINEER &rarr; GROWTH LEADER &rarr; AI BUILDER</span>
+            <span>Hi, I am Prasant Roy</span>
           </motion.div>
 
           {/* Main Headline */}
@@ -32,10 +32,9 @@ export default function Hero() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1.0, ease: [0.16, 1, 0.3, 1], delay: 0.1 }}
-            className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-semibold tracking-tight leading-[1.15] py-2 px-4 -mx-4 select-none mb-8 text-neutral-900 dark:text-white"
+            className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight leading-[1.15] py-2 select-none mb-8 text-neutral-900 dark:text-white"
           >
-            <span className="block">Turning strategy into <span className="text-gradient-silver">systems</span>.</span>
-            <span className="block mt-1.5 sm:mt-2.5">Turning systems into <span className="text-gradient-purple">growth</span>.</span>
+            Building <span className="bg-gradient-to-r from-blue-600 to-cyan-500 dark:from-blue-400 dark:to-cyan-300 bg-clip-text text-transparent">Growth</span> Systems That <span className="bg-gradient-to-r from-violet-600 to-fuchsia-500 dark:from-violet-400 dark:to-fuchsia-300 bg-clip-text text-transparent">Scale</span>.
           </motion.h1>
 
           {/* Supporting Copy */}
@@ -46,7 +45,7 @@ export default function Hero() {
             className="text-base sm:text-lg font-light tracking-wide text-neutral-600 dark:text-neutral-400 max-w-2xl leading-relaxed space-y-4 mb-12 select-none"
           >
             <p>
-              I help companies scale through growth strategy, experimentation, AI automation, and data-driven decision making.
+              I help businesses scale through growth strategy, experimentation, AI automation, and data-driven decision making.
             </p>
             <p>
               Combining engineering discipline with commercial thinking to create predictable and measurable business outcomes.
@@ -67,10 +66,10 @@ export default function Hero() {
               Explore My Journey &rarr;
             </a>
             <a
-              href="#projects"
+              href="#about"
               className="w-full sm:w-auto text-center text-xs font-semibold tracking-[0.15em] uppercase border border-neutral-200 dark:border-neutral-800 hover:border-neutral-300 dark:hover:border-neutral-600 bg-white/40 dark:bg-black/40 backdrop-blur px-8 py-4 rounded-full transition-all duration-300 text-neutral-600 dark:text-neutral-300 hover:text-neutral-900 dark:hover:text-white"
             >
-              View Products & Systems &rarr;
+              About Me &rarr;
             </a>
           </motion.div>
 
