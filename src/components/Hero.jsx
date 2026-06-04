@@ -24,7 +24,7 @@ export default function Hero() {
             className="inline-flex items-center space-x-2 border border-neutral-800/60 bg-neutral-950/40 backdrop-blur-md px-3.5 py-2 rounded-full mb-8 text-neutral-400 text-[10px] sm:text-xs tracking-[0.2em] uppercase font-mono"
           >
             <span className="w-1.5 h-1.5 rounded-full bg-cyan-500 animate-pulse" />
-            <span>METAROY // META = BEYOND CONVENTIONAL GTM</span>
+            <span>METAROY // META = TRANSCENDENCE</span>
           </motion.div>
 
           {/* Big Name Title */}
