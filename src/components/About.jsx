@@ -83,7 +83,7 @@ export default function About() {
               className="w-full max-w-[280px] sm:max-w-[320px] aspect-square rounded-2xl overflow-hidden relative shadow-sm dark:shadow-[0_0_50px_rgba(139,92,246,0.12)] border border-neutral-100 dark:border-neutral-900 bg-neutral-50/50 dark:bg-neutral-950/10 mb-6 p-4"
             >
               <img
-                src="/assets/prasant-hero-polished.png"
+                src="/assets/prasant-about.png"
                 alt="Prasant Roy Profile"
                 className="w-full h-full object-cover filter grayscale contrast-[1.05] brightness-95 hover:filter-none transition-all duration-700 ease-out select-none pointer-events-none rounded-xl"
               />
