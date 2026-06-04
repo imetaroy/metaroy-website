@@ -163,7 +163,7 @@ export default function About() {
             
             {/* Mini Expertise Strip */}
             <div className="flex flex-wrap gap-2 mb-8 select-none">
-              {['Growth Leadership', 'GTM Strategy', 'AI Systems', 'Consumer Internet', 'B2B SaaS', 'Revenue Optimization', 'Systems Thinking'].map(badge => (
+              {['Growth Leadership', 'GTM Strategy', 'Systems Thinking', 'AI Automation', 'Revenue Ownership', 'Data-driven Marketing'].map(badge => (
                 <span
                   key={badge}
                   className="text-[10px] sm:text-xs font-mono text-neutral-600 dark:text-neutral-400 border border-neutral-200 dark:border-neutral-900 bg-neutral-50 dark:bg-neutral-950/20 px-3.5 py-1 rounded-full hover:border-neutral-400 dark:hover:border-neutral-700 hover:text-neutral-950 dark:hover:text-white hover:bg-neutral-100/50 dark:hover:bg-neutral-950/45 transition-all duration-300 cursor-default"
