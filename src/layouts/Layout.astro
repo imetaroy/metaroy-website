@@ -1,0 +1,112 @@
+---
+import '../styles/global.css';
+
+interface Props {
+  title?: string;
+  description?: string;
+  image?: string;
+  url?: string;
+}
+
+const {
+  title = "Prasant Roy | Marketing Systems, AI & Digital Growth",
+  description = "Building intelligent growth systems at the intersection of AI, marketing, and product. Performance marketing leader and GTM strategist.",
+  image = "/og-image.png", // Will default to a placeholder or generated image
+  url = "https://metaroy.com",
+} = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang="en" class="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+
+    <!-- Primary Meta Tags -->
+    <title>{title}</title>
+    <meta name="title" content={title} />
+    <meta name="description" content={description} />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={url} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={new URL(image, Astro.url)} />
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content={url} />
+    <meta property="twitter:title" content={title} />
+    <meta property="twitter:description" content={description} />
+    <meta property="twitter:image" content={new URL(image, Astro.url)} />
+
+    <!-- Preconnect to external resources -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  </head>
+  <body class="bg-black text-neutral-200 selection:bg-neutral-800 selection:text-white">
+    <!-- Ambient Background Grids -->
+    <div class="fixed inset-0 pointer-events-none z-0 overflow-hidden">
+      <div class="absolute inset-0 bg-grid-pattern opacity-30"></div>
+      <div class="absolute inset-0 bg-dot-pattern opacity-10"></div>
+      <!-- Background Ambient Glows -->
+      <div class="absolute -top-[40%] -left-[20%] w-[80%] h-[80%] rounded-full bg-radial from-neutral-900/40 via-transparent to-transparent blur-[120px]"></div>
+      <div class="absolute -bottom-[40%] -right-[20%] w-[80%] h-[80%] rounded-full bg-radial from-neutral-900/40 via-transparent to-transparent blur-[120px]"></div>
+    </div>
+
+    <!-- Main Content Container -->
+    <div class="relative z-10 min-h-screen flex flex-col">
+      <slot />
+    </div>
+
+    <!-- Script to initialize Lenis smooth scroll and GSAP integration -->
+    <script>
+      import Lenis from 'lenis';
+      import { gsap } from 'gsap';
+      import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+      // Register ScrollTrigger plugin
+      gsap.registerPlugin(ScrollTrigger);
+
+      // Initialize Lenis Scroll
+      const lenis = new Lenis({
+        duration: 1.4,
+        easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), // Apple-like smooth decel
+        orientation: 'vertical',
+        gestureOrientation: 'vertical',
+        smoothWheel: true,
+        wheelMultiplier: 0.95,
+        touchMultiplier: 1.5,
+      });
+
+      // Synchronize ScrollTrigger with Lenis
+      lenis.on('scroll', ScrollTrigger.update);
+
+      gsap.ticker.add((time) => {
+        lenis.raf(time * 1000);
+      });
+
+      gsap.ticker.lagSmoothing(0);
+
+      // Global navigation click handler for smooth scrolling to targets
+      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+          e.preventDefault();
+          const targetId = this.getAttribute('href');
+          if (targetId && targetId !== '#') {
+            const targetElement = document.querySelector(targetId);
+            if (targetElement) {
+              lenis.scrollTo(targetElement, {
+                offset: -80, // Offset for sticky navbar
+                duration: 1.5,
+              });
+            }
+          }
+        });
+      });
+    </script>
+  </body>
+</html>
