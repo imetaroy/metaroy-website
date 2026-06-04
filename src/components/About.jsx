@@ -47,17 +47,20 @@ const METRICS_LIST = [
     value: '13',
     suffix: '+',
     label: 'Years of Experience',
+    supportingLabel: 'Engineer • Growth Leader • AI Builder'
   },
   {
     value: '50',
     prefix: '$',
     suffix: 'M+',
     label: 'Contribution Margin Impact',
+    supportingLabel: 'Revenue Growth at Scale'
   },
   {
-    value: 'B2B & Consumer Internet',
-    label: 'Growth Systems at Scale',
-    isStatic: true
+    value: '100',
+    suffix: '+',
+    label: 'Growth Experiments Delivered',
+    supportingLabel: 'Acquisition • Retention • Monetization'
   }
 ];
 
@@ -143,19 +146,16 @@ export default function About() {
                   transition={{ duration: 0.6, delay: idx * 0.05, ease: [0.16, 1, 0.3, 1] }}
                   className="flex flex-col justify-center sm:justify-start"
                 >
-                  {stat.isStatic ? (
-                    <span className="text-xl sm:text-2xl font-semibold text-neutral-900 dark:text-white tracking-tight py-1 font-sans leading-none">
-                      {stat.value}
-                    </span>
-                  ) : (
-                    <StatCounter 
-                      value={stat.value} 
-                      suffix={stat.suffix} 
-                      prefix={stat.prefix} 
-                    />
-                  )}
-                  <span className="text-[10px] tracking-wider uppercase text-neutral-600 dark:text-neutral-400 font-semibold mt-1 font-mono">
+                  <StatCounter 
+                    value={stat.value} 
+                    suffix={stat.suffix} 
+                    prefix={stat.prefix} 
+                  />
+                  <span className="text-[10px] tracking-wider uppercase text-neutral-900 dark:text-white font-semibold mt-2.5 font-sans leading-none">
                     {stat.label}
+                  </span>
+                  <span className="text-[9px] font-mono text-neutral-500 dark:text-neutral-500 mt-1 block tracking-wider uppercase leading-none">
+                    {stat.supportingLabel}
                   </span>
                 </motion.div>
               ))}
@@ -163,10 +163,10 @@ export default function About() {
             
             {/* Mini Expertise Strip */}
             <div className="flex flex-wrap gap-2 mb-8 select-none">
-              {['Growth Marketing', 'Google Ads', 'AI Automation', 'GTM Strategy', 'Python', 'SQL', 'Analytics', 'Product Thinking', 'Leadership'].map(badge => (
+              {['Growth Leadership', 'GTM Strategy', 'AI Systems', 'Consumer Internet', 'B2B SaaS', 'Revenue Optimization', 'Systems Thinking'].map(badge => (
                 <span
                   key={badge}
-                  className="text-[10px] sm:text-xs font-mono text-neutral-600 dark:text-neutral-400 border border-neutral-200 dark:border-neutral-900 bg-neutral-50 dark:bg-neutral-950/20 px-3.5 py-1 rounded-full"
+                  className="text-[10px] sm:text-xs font-mono text-neutral-600 dark:text-neutral-400 border border-neutral-200 dark:border-neutral-900 bg-neutral-50 dark:bg-neutral-950/20 px-3.5 py-1 rounded-full hover:border-neutral-400 dark:hover:border-neutral-700 hover:text-neutral-950 dark:hover:text-white hover:bg-neutral-100/50 dark:hover:bg-neutral-950/45 transition-all duration-300 cursor-default"
                 >
                   {badge}
                 </span>
