@@ -109,32 +109,57 @@ export default function Navbar() {
 
         {/* CTA (Header Button) & Theme Toggle */}
         <div className="flex items-center space-x-4">
-          <AnimatePresence mode="wait">
+          {/* Apple-style segmented theme slider */}
+          <div className="h-8 w-32 bg-neutral-100/85 dark:bg-neutral-900/60 border border-neutral-200 dark:border-neutral-800/80 p-0.5 rounded-full flex relative select-none transition-colors duration-500">
+            {/* Sliding Indicator */}
+            <motion.div
+              className="absolute top-0.5 bottom-0.5 left-0.5 rounded-full bg-white dark:bg-neutral-800 shadow-sm dark:shadow-none"
+              initial={false}
+              animate={{
+                x: theme === 'light' ? '0%' : '100%',
+              }}
+              transition={{ type: 'spring', stiffness: 350, damping: 28 }}
+              style={{
+                width: 'calc(50% - 2px)',
+              }}
+            />
+
+            {/* Light Segment */}
             <button
-              onClick={toggleTheme}
-              className="w-8 h-8 rounded-full flex items-center justify-center border border-neutral-200 dark:border-neutral-800/60 hover:border-neutral-400 dark:hover:border-neutral-500 bg-white/80 dark:bg-neutral-950/40 text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white transition-all duration-300 focus:outline-none relative overflow-hidden"
-              aria-label="Toggle theme"
+              onClick={() => {
+                setTheme('light');
+                document.documentElement.classList.remove('dark');
+                localStorage.setItem('theme', 'light');
+              }}
+              className={`flex-1 z-10 flex items-center justify-center text-[9px] font-mono tracking-wider uppercase font-semibold transition-colors duration-300 focus:outline-none cursor-pointer ${
+                theme === 'light'
+                  ? 'text-neutral-950'
+                  : 'text-neutral-500 hover:text-neutral-700 dark:text-neutral-500 dark:hover:text-neutral-300'
+              }`}
             >
-              <motion.div
-                key={theme}
-                initial={{ y: 12, opacity: 0, rotate: 45 }}
-                animate={{ y: 0, opacity: 1, rotate: 0 }}
-                exit={{ y: -12, opacity: 0, rotate: -45 }}
-                transition={{ duration: 0.2 }}
-                className="flex items-center justify-center"
-              >
-                {theme === 'dark' ? (
-                  <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/></svg>
-                ) : (
-                  <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>
-                )}
-              </motion.div>
+              Light
             </button>
-          </AnimatePresence>
+
+            {/* Dark Segment */}
+            <button
+              onClick={() => {
+                setTheme('dark');
+                document.documentElement.classList.add('dark');
+                localStorage.setItem('theme', 'dark');
+              }}
+              className={`flex-1 z-10 flex items-center justify-center text-[9px] font-mono tracking-wider uppercase font-semibold transition-colors duration-300 focus:outline-none cursor-pointer ${
+                theme === 'dark'
+                  ? 'text-white'
+                  : 'text-neutral-500 hover:text-neutral-700 dark:text-neutral-500 dark:hover:text-neutral-300'
+              }`}
+            >
+              Dark
+            </button>
+          </div>
 
           <a
             href="#contact"
-            className="text-xs font-semibold tracking-wider uppercase border border-neutral-200 dark:border-neutral-800 hover:border-neutral-400 dark:hover:border-neutral-500 bg-white dark:bg-neutral-950 px-4 py-2 rounded-full transition-all duration-300 text-neutral-600 dark:text-neutral-300 hover:text-neutral-900 dark:hover:text-white"
+            className="text-xs font-semibold tracking-wider uppercase border border-neutral-800 dark:border-neutral-200 hover:border-neutral-700 dark:hover:border-neutral-400 bg-neutral-950 dark:bg-white px-4 py-2 rounded-full transition-all duration-300 text-neutral-300 dark:text-neutral-800 hover:text-white dark:hover:text-black"
           >
             Let's Talk
           </a>

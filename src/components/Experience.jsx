@@ -87,7 +87,7 @@ export default function Experience() {
                 {/* Timeline Indicator Node (Supports unique gold highlights for MBA milestones) */}
                 <div className={`absolute -left-[31px] sm:-left-[47px] top-1.5 w-[11px] h-[11px] rounded-full border transition-all duration-300 ${
                   exp.isEducation 
-                    ? 'border-yellow-500/80 bg-yellow-950/40 shadow-[0_0_8px_rgba(234,179,8,0.4)] group-hover:bg-yellow-400 group-hover:scale-125'
+                    ? 'border-yellow-500/80 bg-yellow-500/15 dark:bg-yellow-950/40 shadow-[0_0_8px_rgba(234,179,8,0.4)] group-hover:bg-yellow-400 group-hover:scale-125'
                     : 'border-neutral-300 dark:border-neutral-800 bg-white dark:bg-black group-hover:bg-neutral-900 dark:group-hover:bg-white group-hover:scale-125'
                 }`} />
 
@@ -149,7 +149,7 @@ export default function Experience() {
                             <span className="text-[10px] font-semibold text-yellow-600 dark:text-yellow-400 tracking-tight mb-1 font-sans">
                               {h.title}
                             </span>
-                            <span className="text-[10px] text-neutral-550 dark:text-neutral-400 font-light leading-relaxed">
+                            <span className="text-[10px] text-neutral-600 dark:text-neutral-400 font-light leading-relaxed">
                               {h.desc}
                             </span>
                           </div>
@@ -162,7 +162,7 @@ export default function Experience() {
                             <span className="text-xl sm:text-2xl font-mono font-medium text-neutral-900 dark:text-white">
                               {metric.value}
                             </span>
-                            <span className="text-[10px] text-neutral-550 dark:text-neutral-500 tracking-wider uppercase mt-1 font-medium leading-tight">
+                            <span className="text-[10px] text-neutral-500 dark:text-neutral-500 tracking-wider uppercase mt-1 font-medium leading-tight">
                               {metric.label}
                             </span>
                           </div>

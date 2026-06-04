@@ -1,5 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Geist+Mono:wght@100..900&family=Geist:wght@100..900&family=Inter:wght@100..900&display=swap');
 @import "tailwindcss";
+@custom-variant dark (.dark &);
+
 
 @theme {
   --font-sans: "Geist", "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
@@ -16,7 +18,7 @@
   --color-accent-glow: rgba(255, 255, 255, 0.15);
 
   --animate-glow: glow 8s linear infinite;
-  --animate-pulse-slow: pulse-slow 6s ease-in-out infinite;
+  --animate-pulse-slow: pulse-slow 15s ease-in-out infinite;
 
   @keyframes glow {
     0%, 100% { filter: hue-rotate(0deg); }
@@ -65,7 +67,7 @@ body {
   padding: 0;
 }
 
-body.dark {
+.dark body {
   background-color: #000000;
 }
 
@@ -167,6 +169,13 @@ body.dark {
 }
 
 /* Typography Gradient Text */
+.text-gradient-silver,
+.text-gradient-purple,
+.text-gradient-glow,
+.bg-clip-text {
+  transition: none !important;
+}
+
 .text-gradient-silver {
   background: linear-gradient(180deg, #111111 0%, #71717a 100%);
   -webkit-background-clip: text;
@@ -174,7 +183,7 @@ body.dark {
   background-clip: text;
 }
 .dark .text-gradient-silver {
-  background: linear-gradient(180deg, #ffffff 0%, #a1a1aa 100%);
+  background-image: linear-gradient(180deg, #ffffff 0%, #a1a1aa 100%);
 }
 
 .text-gradient-purple {
@@ -184,7 +193,7 @@ body.dark {
   background-clip: text;
 }
 .dark .text-gradient-purple {
-  background: linear-gradient(135deg, #a78bfa 0%, #e879f9 50%, #f43f5e 100%);
+  background-image: linear-gradient(135deg, #a78bfa 0%, #e879f9 50%, #f43f5e 100%);
 }
 
 .text-gradient-glow {
@@ -194,7 +203,7 @@ body.dark {
   background-clip: text;
 }
 .dark .text-gradient-glow {
-  background: linear-gradient(180deg, #ffffff 30%, rgba(255, 255, 255, 0.4) 100%);
+  background-image: linear-gradient(180deg, #ffffff 30%, rgba(255, 255, 255, 0.4) 100%);
 }
 
 /* Custom Animation Utility */

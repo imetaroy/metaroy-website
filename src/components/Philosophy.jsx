@@ -127,7 +127,7 @@ function BeliefCard({ belief, idx, activeIdx, setActiveIdx }) {
             className={`text-[9px] font-mono px-2 py-0.5 rounded border transition-all duration-300 select-none ${
               isActive 
                 ? 'border-neutral-300 dark:border-neutral-800 bg-neutral-100/40 dark:bg-neutral-900/40 text-neutral-600 dark:text-neutral-300' 
-                : 'border-neutral-200 dark:border-neutral-950 bg-neutral-50/40 dark:bg-neutral-950/40 text-neutral-400 dark:text-neutral-650'
+                : 'border-neutral-200 dark:border-neutral-900 bg-neutral-50/40 dark:bg-neutral-950/20 text-neutral-500 dark:text-neutral-500'
             }`}
           >
             {kw}
@@ -182,7 +182,7 @@ export default function Philosophy() {
               <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-light tracking-tight text-neutral-900 dark:text-white mb-6">
                 Principles That <span className="text-gradient-silver font-medium">Guide My Work</span>.
               </h2>
-              <p className="text-neutral-650 dark:text-neutral-400 font-light text-sm sm:text-base leading-relaxed max-w-lg">
+              <p className="text-neutral-600 dark:text-neutral-400 font-light text-sm sm:text-base leading-relaxed max-w-lg">
                 A framework shaped by software engineering, growth marketing, systems thinking, and artificial intelligence.
               </p>
             </div>
@@ -192,7 +192,7 @@ export default function Philosophy() {
               {CORE_BELIEFS.map((b, idx) => (
                 <div 
                   key={b.num} 
-                  className={`flex items-center gap-3 transition-colors duration-300 ${activeIdx === idx ? 'text-neutral-900 dark:text-white' : 'text-neutral-400 dark:text-neutral-605'}`}
+                  className={`flex items-center gap-3 transition-colors duration-300 ${activeIdx === idx ? 'text-neutral-900 dark:text-white' : 'text-neutral-500 dark:text-neutral-500'}`}
                 >
                   <span className={`h-[1px] transition-all duration-300 ${activeIdx === idx ? 'w-6 bg-neutral-900 dark:bg-white' : 'w-2 bg-neutral-300 dark:bg-neutral-800'}`} />
                   <span>{b.num} // {b.title.toUpperCase()}</span>
@@ -259,7 +259,7 @@ export default function Philosophy() {
                             <blockquote className="text-xs sm:text-sm italic text-neutral-700 dark:text-neutral-200 border-l border-neutral-200 dark:border-neutral-800 pl-3 mb-3">
                               "{belief.quote}"
                             </blockquote>
-                            <p className="text-xs text-neutral-650 dark:text-neutral-400 font-light leading-relaxed mb-4">
+                            <p className="text-xs text-neutral-600 dark:text-neutral-400 font-light leading-relaxed mb-4">
                               {belief.body}
                             </p>
 
@@ -268,7 +268,7 @@ export default function Philosophy() {
                               {belief.keywords.map((kw) => (
                                 <span
                                   key={kw}
-                                  className="text-[9px] font-mono px-2 py-0.5 rounded border border-neutral-300 dark:border-neutral-800 bg-neutral-100/40 dark:bg-neutral-900/40 text-neutral-650 dark:text-neutral-300"
+                                  className="text-[9px] font-mono px-2 py-0.5 rounded border border-neutral-300 dark:border-neutral-800 bg-neutral-100/40 dark:bg-neutral-900/40 text-neutral-600 dark:text-neutral-300"
                                 >
                                   {kw}
                                 </span>

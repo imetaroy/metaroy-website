@@ -73,7 +73,7 @@ function ProjectCard({ project, idx }) {
       transition={{ duration: 0.8, delay: idx * 0.08, ease: [0.16, 1, 0.3, 1] }}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
-      className={`glass-card rounded-2xl border border-neutral-200 dark:border-neutral-900 bg-white/40 dark:bg-neutral-950/20 overflow-hidden flex flex-col justify-between transition-all duration-500 hover:border-neutral-450 dark:hover:border-neutral-800 hover:-translate-y-2 hover:bg-white/95 dark:hover:bg-neutral-950/40 relative group ${
+      className={`glass-card rounded-2xl border border-neutral-200 dark:border-neutral-900 bg-white/40 dark:bg-neutral-950/20 overflow-hidden flex flex-col justify-between transition-all duration-500 hover:border-neutral-400 dark:hover:border-neutral-800 hover:-translate-y-2 hover:bg-white/95 dark:hover:bg-neutral-950/40 relative group ${
         isWide ? 'lg:col-span-2' : 'lg:col-span-1'
       }`}
       style={{
@@ -129,7 +129,7 @@ function ProjectCard({ project, idx }) {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.6, delay: i * 0.1, ease: 'easeOut' }}
-                    className="p-4 rounded-xl border border-neutral-200 dark:border-neutral-900 bg-white/40 dark:bg-neutral-950/40 transition-all duration-300 hover:border-neutral-450 dark:hover:border-neutral-800 hover:bg-neutral-100/40 dark:hover:bg-neutral-900/5 flex flex-col justify-between group/metric relative overflow-hidden shadow-sm dark:shadow-inner"
+                    className="p-4 rounded-xl border border-neutral-200 dark:border-neutral-900 bg-white/40 dark:bg-neutral-950/40 transition-all duration-300 hover:border-neutral-400 dark:hover:border-neutral-800 hover:bg-neutral-100/40 dark:hover:bg-neutral-900/5 flex flex-col justify-between group/metric relative overflow-hidden shadow-sm dark:shadow-inner"
                   >
                     {/* Glowing background radial hover spot */}
                     <div 
@@ -153,7 +153,7 @@ function ProjectCard({ project, idx }) {
                         </div>
 
                         {/* Title */}
-                        <div className="text-[9px] font-semibold text-neutral-850 dark:text-neutral-200 tracking-wider uppercase mt-2 mb-1">
+                        <div className="text-[9px] font-semibold text-neutral-800 dark:text-neutral-200 tracking-wider uppercase mt-2 mb-1">
                           {h.title}
                         </div>
                       </div>
@@ -181,7 +181,7 @@ function ProjectCard({ project, idx }) {
             {project.tech && (
               <div className="flex flex-wrap gap-2 mb-6 pt-4 border-t border-neutral-200 dark:border-neutral-900/40">
                 {project.tech.map((t) => (
-                  <span key={t} className="text-[9px] font-mono text-neutral-450 dark:text-neutral-500 select-none">
+                  <span key={t} className="text-[9px] font-mono text-neutral-400 dark:text-neutral-500 select-none">
                     #{t}
                   </span>
                 ))}
@@ -203,7 +203,7 @@ function ProjectCard({ project, idx }) {
         </div>
 
         {/* Visual Mockup Showcase Area */}
-        <div className={`bg-neutral-100/10 dark:bg-neutral-900/10 p-6 flex items-center justify-center border-t border-neutral-200 dark:border-neutral-900/40 ${
+        <div className={`bg-neutral-100/50 dark:bg-neutral-900/30 p-6 flex items-center justify-center border-t border-neutral-200 dark:border-neutral-900/40 ${
           isWide 
             ? 'lg:w-[45%] lg:border-t-0 lg:border-l lg:border-neutral-200 dark:border-neutral-900/40 min-h-[280px]' 
             : 'w-full h-56'
@@ -263,32 +263,32 @@ export default function Projects() {
         }
       ],
       mockup: (
-        <div className="relative w-full h-full bg-[#050505] rounded-xl border border-neutral-900 p-4 flex flex-col justify-between font-mono text-[9px] text-neutral-500 overflow-hidden shadow-inner">
+        <div className="relative w-full h-full bg-[#050505] rounded-xl border border-neutral-900 p-4 flex flex-col justify-between font-mono text-[9px] text-neutral-300 dark:text-neutral-500 overflow-hidden shadow-inner shadow-lg shadow-black/25 dark:shadow-none">
           <div className="flex items-center justify-between border-b border-neutral-900 pb-2 text-[8px]">
             <div className="flex items-center space-x-1.5">
               <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
-              <span className="text-neutral-400">METAROY EXEC DASHBOARD // ACTIVE</span>
+              <span className="text-neutral-200 dark:text-neutral-400">METAROY EXEC DASHBOARD // ACTIVE</span>
             </div>
-            <span className="text-neutral-500">v1.0.4</span>
+            <span className="text-neutral-350 dark:text-neutral-500">v1.0.4</span>
           </div>
 
           <div className="flex-1 flex flex-col justify-center space-y-3 my-2">
             {/* Mocked mini line chart */}
             <div className="flex justify-between items-end h-12 px-2 border-b border-neutral-900 pb-1">
-              <div className="w-[12%] h-[20%] bg-neutral-900 rounded-sm" />
-              <div className="w-[12%] h-[35%] bg-neutral-900 rounded-sm" />
-              <div className="w-[12%] h-[50%] bg-neutral-900 rounded-sm" />
-              <div className="w-[12%] h-[75%] bg-neutral-900 rounded-sm animate-pulse" />
+              <div className="w-[12%] h-[20%] bg-neutral-800 dark:bg-neutral-900 rounded-sm" />
+              <div className="w-[12%] h-[35%] bg-neutral-800 dark:bg-neutral-900 rounded-sm" />
+              <div className="w-[12%] h-[50%] bg-neutral-800 dark:bg-neutral-900 rounded-sm" />
+              <div className="w-[12%] h-[75%] bg-neutral-800 dark:bg-neutral-900 rounded-sm animate-pulse" />
               <div className="w-[12%] h-[90%] bg-gradient-to-t from-blue-600 to-cyan-500 rounded-sm" />
             </div>
 
             {/* Sparkline and logs */}
             <div className="flex justify-between items-center text-[8px] bg-neutral-950 p-1.5 rounded border border-neutral-900/60">
-              <span className="text-neutral-400">ARR PERFORMANCE:</span>
+              <span className="text-neutral-200 dark:text-neutral-400">ARR PERFORMANCE:</span>
               <span className="text-emerald-400 font-semibold">+18.4% MoM LIFT</span>
             </div>
             
-            <div className="text-[7px] text-neutral-600 space-y-1">
+            <div className="text-[7px] text-neutral-400 dark:text-neutral-600 space-y-1">
               <div>&gt; INSIGHT: High LTV opportunity detected in organic loops.</div>
               <div>&gt; STATUS: Automating GTM allocation updates... COMPLETE.</div>
             </div>
@@ -305,26 +305,26 @@ export default function Projects() {
       cta: 'View Repository',
       url: 'https://github.com/imetaroy/adintel-ai',
       mockup: (
-        <div className="relative w-full h-full bg-[#050505] rounded-xl border border-neutral-900 p-4 flex flex-col justify-between font-mono text-[9px] text-neutral-500 overflow-hidden shadow-inner">
+        <div className="relative w-full h-full bg-[#050505] rounded-xl border border-neutral-900 p-4 flex flex-col justify-between font-mono text-[9px] text-neutral-300 dark:text-neutral-500 overflow-hidden shadow-inner shadow-lg shadow-black/25 dark:shadow-none">
           <div className="flex items-center justify-between border-b border-neutral-900 pb-2 text-[8px]">
-            <span className="text-neutral-400">ADINTEL AI // CAMPAIGN INSPECTOR</span>
-            <span className="text-neutral-500">gemini-1.5-pro</span>
+            <span className="text-neutral-200 dark:text-neutral-400">ADINTEL AI // CAMPAIGN INSPECTOR</span>
+            <span className="text-neutral-355 dark:text-neutral-500">gemini-1.5-pro</span>
           </div>
 
           <div className="flex-1 flex flex-col justify-center space-y-2.5 my-2">
             {/* File drop simulation */}
-            <div className="border border-dashed border-neutral-800 p-2 rounded text-center text-[7px] text-neutral-400 bg-neutral-950/40">
+            <div className="border border-dashed border-neutral-800 p-2 rounded text-center text-[7px] text-neutral-200 dark:text-neutral-400 bg-neutral-950/40">
               📁 google_ads_q2_export.csv (Loaded)
             </div>
 
             {/* AI suggestion output box */}
             <div className="bg-neutral-950 p-2 rounded border border-neutral-900 text-[7px] space-y-1 leading-normal">
-              <span className="text-violet-400 font-semibold block">GEMINI RECOMMENDATION:</span>
-              <span className="text-neutral-300 block">"Shift 15% budget from 'Competitor_Intent' (ROAS &lt; 1.0) to 'Brand_Core' ad group."</span>
+              <span className="text-violet-450 dark:text-violet-400 font-semibold block">GEMINI RECOMMENDATION:</span>
+              <span className="text-neutral-100 dark:text-neutral-300 block">"Shift 15% budget from 'Competitor_Intent' (ROAS &lt; 1.0) to 'Brand_Core' ad group."</span>
             </div>
 
             <div className="flex justify-between items-center text-[7px] pt-1">
-              <span className="text-neutral-600">CONFIDENCE LEVEL:</span>
+              <span className="text-neutral-400 dark:text-neutral-600">CONFIDENCE LEVEL:</span>
               <span className="text-emerald-400">94% CONFIDENT</span>
             </div>
           </div>
@@ -340,30 +340,30 @@ export default function Projects() {
       cta: 'View Repository',
       url: 'https://github.com/imetaroy/career-intelligence-engine',
       mockup: (
-        <div className="relative w-full h-full bg-[#050505] rounded-xl border border-neutral-900 p-4 flex flex-col justify-between font-mono text-[9px] text-neutral-500 overflow-hidden shadow-inner">
+        <div className="relative w-full h-full bg-[#050505] rounded-xl border border-neutral-900 p-4 flex flex-col justify-between font-mono text-[9px] text-neutral-300 dark:text-neutral-500 overflow-hidden shadow-inner shadow-lg shadow-black/25 dark:shadow-none">
           <div className="flex items-center justify-between border-b border-neutral-900 pb-2 text-[8px]">
-            <span className="text-neutral-400">ATS ANALYZER // RESUME_OPTIMIZER</span>
-            <span className="text-neutral-500">READY</span>
+            <span className="text-neutral-200 dark:text-neutral-400">ATS ANALYZER // RESUME_OPTIMIZER</span>
+            <span className="text-neutral-355 dark:text-neutral-500">READY</span>
           </div>
 
           <div className="flex-1 flex flex-col justify-center space-y-2.5 my-2">
             {/* Score Ring simulation */}
             <div className="flex items-center justify-between bg-neutral-950 p-2 rounded border border-neutral-900">
-              <span className="text-neutral-300">ATS Match Rating:</span>
+              <span className="text-neutral-100 dark:text-neutral-300">ATS Match Rating:</span>
               <span className="text-xs text-cyan-400 font-semibold">85 / 100</span>
             </div>
 
             {/* Resume gaps info */}
             <div className="space-y-1 text-[7px] leading-relaxed">
-              <div className="flex items-center space-x-1.5 text-neutral-400">
+              <div className="flex items-center space-x-1.5 text-neutral-200 dark:text-neutral-400">
                 <span className="w-1 h-1 rounded-full bg-rose-500" />
                 <span>Missing Keyword: "LTV Modeling"</span>
               </div>
-              <div className="flex items-center space-x-1.5 text-neutral-400">
+              <div className="flex items-center space-x-1.5 text-neutral-200 dark:text-neutral-400">
                 <span className="w-1 h-1 rounded-full bg-rose-500" />
                 <span>Missing Keyword: "Python Automation"</span>
               </div>
-              <div className="flex items-center space-x-1.5 text-neutral-400">
+              <div className="flex items-center space-x-1.5 text-neutral-200 dark:text-neutral-400">
                 <span className="w-1 h-1 rounded-full bg-emerald-500" />
                 <span>Found Keyword: "GTM Systems"</span>
               </div>
@@ -381,17 +381,17 @@ export default function Projects() {
       url: 'https://github.com/imetaroy',
       isWide: true,
       mockup: (
-        <div className="relative w-full h-full bg-[#050505] rounded-xl border border-neutral-900 p-4 flex flex-col justify-between font-mono text-[9px] text-neutral-500 overflow-hidden shadow-inner">
+        <div className="relative w-full h-full bg-[#050505] rounded-xl border border-neutral-900 p-4 flex flex-col justify-between font-mono text-[9px] text-neutral-300 dark:text-neutral-500 overflow-hidden shadow-inner shadow-lg shadow-black/25 dark:shadow-none">
           <TerminalCursorStyle />
           
           <div className="flex items-center justify-between border-b border-neutral-900 pb-2 text-[8px] mb-2 select-none">
-            <span className="text-neutral-400">imetaroy@metaroy-os:~$ python run_lab.py</span>
-            <span className="text-neutral-600">bash // shell</span>
+            <span className="text-neutral-200 dark:text-neutral-400">imetaroy@metaroy-os:~$ python run_lab.py</span>
+            <span className="text-neutral-400 dark:text-neutral-600">bash // shell</span>
           </div>
 
-          <div className="flex-1 flex flex-col space-y-1.5 justify-center font-mono text-neutral-400 leading-normal text-[8px]">
+          <div className="flex-1 flex flex-col space-y-1.5 justify-center font-mono text-neutral-200 dark:text-neutral-400 leading-normal text-[8px]">
             <div>&gt; Loading repositories... [OK]</div>
-            <div className="pl-3 text-neutral-500">
+            <div className="pl-3 text-neutral-350 dark:text-neutral-500">
               - imetaroy/adintel-ai (main) // active<br/>
               - imetaroy/career-intelligence-engine (dev) // 92% match<br/>
               - imetaroy/landing-page-cro-analyzer // optimization<br/>

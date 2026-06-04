@@ -154,11 +154,11 @@ export default function About() {
   }, []);
 
   return (
-    <section ref={containerRef} id="about" className="relative min-h-screen py-24 md:py-32 px-6 border-b border-neutral-900/60 z-10 overflow-hidden">
+    <section ref={containerRef} id="about" className="relative min-h-screen py-24 md:py-32 px-6 border-b border-neutral-200 dark:border-neutral-900/60 z-10 overflow-hidden">
       <div className="max-w-7xl mx-auto">
         
         {/* Section Heading & Intro */}
-        <div className="flex flex-col lg:flex-row lg:items-start justify-between gap-12 mb-20 select-none">
+        <div className="flex flex-col lg:flex-row lg:items-start justify-between gap-12 mb-10 select-none">
           <div className="max-w-2xl lg:w-2/3">
             <span className="text-[10px] tracking-[0.35em] text-neutral-500 uppercase font-semibold block mb-3">
               01 // Profile
@@ -176,7 +176,7 @@ export default function About() {
                   animate={{ y: 0, opacity: 1 }}
                   exit={{ y: -20, opacity: 0 }}
                   transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-                  className="text-xs sm:text-sm font-mono text-neutral-500 dark:text-neutral-400 tracking-wider font-semibold"
+                  className="text-xs sm:text-sm font-mono text-neutral-600 dark:text-neutral-400 tracking-wider font-semibold"
                 >
                   {ROTATING_HEADLINES[headlineIdx]}
                 </motion.div>

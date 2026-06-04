@@ -86,8 +86,8 @@ export default function Hero() {
               alt="Prasant Roy Portrait"
               className="w-full h-full object-cover filter grayscale contrast-105 brightness-95 hover:filter-none transition-all duration-700 ease-out select-none pointer-events-none"
               style={{
-                maskImage: 'radial-gradient(circle, black 50%, transparent 100%)',
-                WebkitMaskImage: 'radial-gradient(circle, black 50%, transparent 100%)',
+                maskImage: 'radial-gradient(circle at 50% 35%, black 55%, transparent 100%)',
+                WebkitMaskImage: 'radial-gradient(circle at 50% 35%, black 55%, transparent 100%)',
               }}
             />
           </motion.div>

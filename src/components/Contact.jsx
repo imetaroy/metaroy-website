@@ -114,7 +114,7 @@ function CollaborationCard({ title, desc, icon, topics, idx }) {
           {title}
         </h3>
         
-        <p className="text-xs text-neutral-650 dark:text-neutral-400 font-light leading-relaxed mb-4">
+        <p className="text-xs text-neutral-600 dark:text-neutral-400 font-light leading-relaxed mb-4">
           {desc}
         </p>
 
@@ -204,7 +204,7 @@ export default function Contact() {
             <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-light tracking-tight text-neutral-900 dark:text-white mb-6">
               Let's Build <span className="text-gradient-silver font-medium">Something Beyond</span>.
             </h2>
-            <p className="text-neutral-650 dark:text-neutral-400 font-light text-sm sm:text-base leading-relaxed">
+            <p className="text-neutral-600 dark:text-neutral-400 font-light text-sm sm:text-base leading-relaxed">
               Whether you're scaling growth, implementing AI, building a product, or exploring new opportunities, I'm always interested in ambitious ideas and meaningful conversations.
             </p>
           </div>

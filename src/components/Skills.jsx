@@ -98,7 +98,7 @@ function ProgressionTrack({ activeDomain, setActiveDomain }) {
                   {phase.label}
                 </span>
               </div>
-              <span className="text-[9px] text-neutral-550 dark:text-neutral-500 font-light mt-1 pl-4">
+              <span className="text-[9px] text-neutral-500 dark:text-neutral-500 font-light mt-1 pl-4">
                 {phase.subtitle}
               </span>
 
@@ -205,7 +205,7 @@ function DomainCard({ domain, domainIdx, activeDomain, setActiveDomain }) {
               {domain.category}
             </h3>
             
-            <p className="text-xs text-neutral-650 dark:text-neutral-400 font-light leading-relaxed mb-6">
+            <p className="text-xs text-neutral-600 dark:text-neutral-400 font-light leading-relaxed mb-6">
               {domain.desc}
             </p>
           </div>
@@ -234,7 +234,7 @@ function DomainCard({ domain, domainIdx, activeDomain, setActiveDomain }) {
         viewport={{ once: true }}
         transition={{ delay: 0.5 + domainIdx * 0.1 }}
         className={`text-center mt-4 text-[10px] font-mono tracking-[0.25em] uppercase select-none font-medium transition-colors duration-300 ${
-          isHighlighted ? 'text-neutral-750 dark:text-neutral-300' : 'text-neutral-450 dark:text-neutral-505'
+          isHighlighted ? 'text-neutral-700 dark:text-neutral-300' : 'text-neutral-400 dark:text-neutral-500'
         }`}
       >
         {domain.label}
@@ -254,7 +254,7 @@ const SKILL_DOMAINS = [
     barColor: 'bg-gradient-to-r from-blue-700 via-blue-500 to-cyan-400',
     averageBadgeBorder: 'border-blue-500/20',
     averageBadgeBg: 'bg-blue-500/10 dark:bg-blue-950/40',
-    averageBadgeText: 'text-blue-605 dark:text-blue-405',
+    averageBadgeText: 'text-blue-600 dark:text-blue-400',
     skills: [
       { name: 'Performance Marketing', score: 10.0 },
       { name: 'Google Ads', score: 10.0 },
@@ -276,7 +276,7 @@ const SKILL_DOMAINS = [
     barColor: 'bg-gradient-to-r from-purple-700 via-violet-500 to-pink-500',
     averageBadgeBorder: 'border-violet-500/20',
     averageBadgeBg: 'bg-violet-500/10 dark:bg-violet-950/40',
-    averageBadgeText: 'text-violet-605 dark:text-violet-405',
+    averageBadgeText: 'text-violet-600 dark:text-violet-400',
     skills: [
       { name: 'AI Workflow Design', score: 8.5 },
       { name: 'Prompt Engineering', score: 9.0 },
@@ -298,7 +298,7 @@ const SKILL_DOMAINS = [
     barColor: 'bg-gradient-to-r from-teal-600 via-cyan-500 to-blue-400',
     averageBadgeBorder: 'border-cyan-500/20',
     averageBadgeBg: 'bg-cyan-500/10 dark:bg-cyan-950/40',
-    averageBadgeText: 'text-cyan-605 dark:text-cyan-405',
+    averageBadgeText: 'text-cyan-600 dark:text-cyan-400',
     skills: [
       { name: 'SQL', score: 9.0 },
       { name: 'Data Analysis', score: 9.0 },
@@ -325,7 +325,7 @@ export default function Skills() {
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-light tracking-tight text-neutral-900 dark:text-white mb-6">
             Core Skill <span className="text-gradient-silver font-medium">Spectrum</span>.
           </h2>
-          <p className="text-neutral-650 dark:text-neutral-400 font-light text-sm sm:text-base leading-relaxed max-w-3xl">
+          <p className="text-neutral-600 dark:text-neutral-400 font-light text-sm sm:text-base leading-relaxed max-w-3xl">
             A unique blend of growth strategy, AI systems thinking, and technical execution developed across software engineering, digital transformation consulting, and global performance marketing leadership.
           </p>
         </div>
