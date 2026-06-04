@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { motion } from 'framer-motion';
+import React, { useState, useEffect, useRef } from 'react';
+import { motion, useInView } from 'framer-motion';
 
 // Custom CSS animation style injection for blinking cursor
 const TerminalCursorStyle = () => (
@@ -13,6 +13,47 @@ const TerminalCursorStyle = () => (
     }
   `}} />
 );
+
+// Universal Stat Counter Component supporting prefix/suffix/decimals
+function StatCounter({ value, duration = 1.6, suffix = "", prefix = "", decimals = 0 }) {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: "-50px" });
+  const [displayValue, setDisplayValue] = useState(0);
+
+  useEffect(() => {
+    if (!isInView) return;
+
+    const end = parseFloat(value);
+    if (isNaN(end)) return;
+
+    let startTime = null;
+
+    const animate = (timestamp) => {
+      if (!startTime) startTime = timestamp;
+      const progress = Math.min((timestamp - startTime) / (duration * 1000), 1);
+      const easedProgress = progress * (2 - progress);
+      const current = easedProgress * end;
+      
+      setDisplayValue(current);
+
+      if (progress < 1) {
+        requestAnimationFrame(animate);
+      } else {
+        setDisplayValue(end);
+      }
+    };
+
+    requestAnimationFrame(animate);
+  }, [isInView, value, duration]);
+
+  const formatted = decimals > 0 ? displayValue.toFixed(decimals) : Math.floor(displayValue).toString();
+
+  return (
+    <span ref={ref}>
+      {prefix}{formatted}{suffix}
+    </span>
+  );
+}
 
 // Single Project Card Component
 function ProjectCard({ project, idx }) {
@@ -78,14 +119,58 @@ function ProjectCard({ project, idx }) {
               {project.desc}
             </p>
 
-            {/* Metrics display block (Only for Card 1 Portfolio) */}
-            {project.metrics && (
-              <div className="grid grid-cols-2 gap-4 my-6 p-4 rounded-xl border border-neutral-900/60 bg-neutral-950/40">
-                {project.metrics.map((m) => (
-                  <div key={m.label} className="flex flex-col">
-                    <span className="text-sm font-semibold text-white font-sans">{m.val}</span>
-                    <span className="text-[9px] font-mono text-neutral-500 mt-0.5">{m.label}</span>
-                  </div>
+            {/* Highlights display block (Only for Card 1 Portfolio) */}
+            {project.highlights && (
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 my-6">
+                {project.highlights.map((h, i) => (
+                  <motion.div
+                    key={h.title}
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.6, delay: i * 0.1, ease: 'easeOut' }}
+                    className="p-4 rounded-xl border border-neutral-900 bg-neutral-950/40 transition-all duration-300 hover:border-neutral-800 hover:bg-neutral-900/5 flex flex-col justify-between group/metric relative overflow-hidden shadow-inner"
+                  >
+                    {/* Glowing background radial hover spot */}
+                    <div 
+                      className="absolute inset-0 opacity-0 group-hover/metric:opacity-100 transition-opacity duration-500 pointer-events-none z-0"
+                      style={{
+                        background: 'radial-gradient(circle 80px at 50% 50%, rgba(255,255,255,0.02), transparent 100%)'
+                      }}
+                    />
+                    
+                    <div className="relative z-10 flex flex-col h-full justify-between">
+                      <div>
+                        {/* Large metric counting up */}
+                        <div className="text-xl sm:text-2xl font-semibold font-mono tracking-tighter text-white">
+                          <StatCounter 
+                            value={h.value} 
+                            prefix={h.prefix} 
+                            suffix={h.suffix} 
+                            decimals={0} 
+                            duration={1.6} 
+                          />
+                        </div>
+
+                        {/* Title */}
+                        <div className="text-[9px] font-semibold text-neutral-200 tracking-wider uppercase mt-2 mb-1">
+                          {h.title}
+                        </div>
+                      </div>
+
+                      <div>
+                        {/* Company Badge / Supporting Label */}
+                        <div className="text-[8px] font-mono text-neutral-400 font-medium mb-1 border-b border-neutral-900/60 pb-1 mt-2">
+                          {h.company}
+                        </div>
+
+                        {/* Contextual Description */}
+                        <div className="text-[8px] text-neutral-500 font-light leading-normal">
+                          {h.desc}
+                        </div>
+                      </div>
+                    </div>
+                  </motion.div>
                 ))}
               </div>
             )}
@@ -143,11 +228,39 @@ export default function Projects() {
       cta: 'View Portfolio',
       url: 'https://shorturl.at/xpDkB',
       isFeatured: true,
-      metrics: [
-        { val: '$15.7M', label: 'ARR Growth' },
-        { val: '68%', label: 'LTV Increase' },
-        { val: '$1.5M+/Mo', label: 'Ad Spend Managed' },
-        { val: '30%', label: 'Churn Reduction' }
+      highlights: [
+        { 
+          prefix: '$', 
+          value: '50', 
+          suffix: 'M+', 
+          title: 'Contribution Margin Impact Generated', 
+          company: 'Pearl.com (JustAnswer)', 
+          desc: 'Global performance marketing and growth initiatives across acquisition, retention, and monetization.' 
+        },
+        { 
+          prefix: '', 
+          value: '10', 
+          suffix: '+', 
+          title: 'Successful Digital Transformation Projects Delivered', 
+          company: '7EDGE', 
+          desc: 'Led GTM, marketing automation, CRM transformation, website modernization, and growth initiatives for B2B SaaS and enterprise clients.' 
+        },
+        { 
+          prefix: '$', 
+          value: '1', 
+          suffix: 'M+', 
+          title: 'Incremental ARR Generated', 
+          company: '0 → 1 Initiatives', 
+          desc: 'Launched and scaled new growth programs including the JustAnswer API business, generating over $1M in qualified pipeline opportunities.' 
+        },
+        { 
+          prefix: '', 
+          value: '4', 
+          suffix: '+', 
+          title: 'Entrepreneurship Projects Launched', 
+          company: 'Builder Mindset', 
+          desc: 'Built and validated ventures across e-commerce, content, SaaS, AI tools, and consumer products.' 
+        }
       ],
       mockup: (
         <div className="relative w-full h-full bg-[#050505] rounded-xl border border-neutral-900 p-4 flex flex-col justify-between font-mono text-[9px] text-neutral-500 overflow-hidden shadow-inner">
