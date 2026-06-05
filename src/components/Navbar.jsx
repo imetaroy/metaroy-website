@@ -82,7 +82,7 @@ export default function Navbar() {
           {/* Logo Link */}
           <a
             href="#home"
-            className="text-base sm:text-lg font-semibold tracking-[0.25em] uppercase text-neutral-900 dark:text-white hover:text-neutral-600 dark:hover:text-neutral-300 transition-colors"
+            className="inline-flex items-center h-9 text-base sm:text-lg font-semibold tracking-[0.25em] uppercase text-neutral-900 dark:text-white hover:text-neutral-600 dark:hover:text-neutral-300 transition-colors"
           >
             PRASANT ROY
           </a>
@@ -171,7 +171,7 @@ export default function Navbar() {
             {/* Hamburger Menu Toggle (Mobile-only) */}
             <button
               onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className="md:hidden flex items-center justify-center p-2 rounded-full border border-neutral-200 dark:border-neutral-800/60 text-neutral-950 dark:text-white hover:bg-neutral-100 dark:hover:bg-neutral-900 transition-colors focus:outline-none cursor-pointer"
+              className="md:hidden flex items-center justify-center h-9 w-9 rounded-full border border-neutral-200 dark:border-neutral-800/60 text-neutral-950 dark:text-white hover:bg-neutral-100 dark:hover:bg-neutral-900 transition-colors focus:outline-none cursor-pointer"
               aria-label="Toggle Menu"
             >
               {isMenuOpen ? (
@@ -225,10 +225,7 @@ export default function Navbar() {
             >
               <div className="flex flex-col space-y-8">
                 {/* Header inside Mobile Menu */}
-                <div className="flex items-center justify-between pb-4 border-b border-neutral-100 dark:border-neutral-900">
-                  <span className="text-xs font-mono tracking-widest text-neutral-500 uppercase">
-                    Navigation
-                  </span>
+                <div className="flex items-center justify-end pb-4 border-b border-neutral-100 dark:border-neutral-900">
                   <button
                     onClick={() => setIsMenuOpen(false)}
                     className="p-1 rounded-full text-neutral-500 hover:text-neutral-950 dark:hover:text-white hover:bg-neutral-100 dark:hover:bg-neutral-900 transition-colors focus:outline-none cursor-pointer"
