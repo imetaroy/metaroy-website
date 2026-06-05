@@ -87,7 +87,7 @@ export default function Experience() {
                 {/* Timeline Indicator Node (Supports unique gold highlights for MBA milestones) */}
                 <div className={`absolute -left-[31px] sm:-left-[47px] top-1.5 w-[11px] h-[11px] rounded-full border transition-all duration-300 ${
                   exp.isEducation 
-                    ? 'border-yellow-500/80 bg-yellow-500/15 dark:bg-yellow-950/40 shadow-[0_0_8px_rgba(234,179,8,0.4)] group-hover:bg-yellow-400 group-hover:scale-125'
+                    ? 'border-amber-600/80 dark:border-yellow-500/80 bg-amber-600/15 dark:bg-yellow-950/40 shadow-[0_0_8px_rgba(217,119,6,0.25)] dark:shadow-[0_0_8px_rgba(234,179,8,0.4)] group-hover:bg-amber-500 dark:group-hover:bg-yellow-400 group-hover:scale-125'
                     : 'border-neutral-300 dark:border-neutral-800 bg-white dark:bg-black group-hover:bg-neutral-900 dark:group-hover:bg-white group-hover:scale-125'
                 }`} />
 
@@ -100,13 +100,13 @@ export default function Experience() {
                     <div className="flex items-center gap-2 flex-wrap mb-1">
                       <h3 className={`text-base sm:text-lg font-medium transition-colors ${
                         exp.isEducation 
-                          ? 'text-yellow-500/90 group-hover:text-yellow-400' 
+                          ? 'text-amber-800 dark:text-yellow-400/90 group-hover:text-amber-700 dark:group-hover:text-yellow-300' 
                           : 'text-neutral-900 dark:text-white group-hover:text-neutral-600 dark:group-hover:text-neutral-300'
                       }`}>
                         {exp.role}
                       </h3>
                       {exp.isEducation && (
-                        <svg className="w-3.5 h-3.5 text-yellow-500 animate-pulse" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+                        <svg className="w-3.5 h-3.5 text-amber-700 dark:text-yellow-500 animate-pulse" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
                           <path strokeLinecap="round" strokeLinejoin="round" d="M12 4.25L2.25 9.15l9.75 4.9 9.75-4.9L12 4.25z" />
                           <path strokeLinecap="round" strokeLinejoin="round" d="M6 12v5c0 1.5 2.7 2.75 6 2.75s6-1.25 6-2.75v-5" />
                           <path strokeLinecap="round" strokeLinejoin="round" d="M20.25 9.15v5.85a.75.75 0 01-.75.75h-.75" />
@@ -120,7 +120,7 @@ export default function Experience() {
                     {exp.badge && (
                       <span className={`inline-block text-[9px] font-mono px-2 py-0.5 rounded border mt-2.5 ${
                         exp.isEducation 
-                          ? 'border-yellow-500/20 bg-yellow-950/30 text-yellow-400 shadow-[0_0_10px_rgba(234,179,8,0.08)]'
+                          ? 'border-amber-600/20 dark:border-yellow-500/20 bg-amber-600/10 dark:bg-yellow-950/30 text-amber-800 dark:text-yellow-400 shadow-[0_0_10px_rgba(217,119,6,0.05)] dark:shadow-[0_0_10px_rgba(234,179,8,0.08)]'
                           : 'border-neutral-200 dark:border-neutral-800 bg-neutral-100/50 dark:bg-neutral-950/40 text-neutral-600 dark:text-neutral-400'
                       }`}>
                         {exp.badge}
@@ -143,10 +143,10 @@ export default function Experience() {
 
                     {/* Highlights Panel (Education) or Impact Grid (Jobs) */}
                     {exp.isEducation ? (
-                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 bg-yellow-500/5 dark:bg-yellow-950/10 border border-yellow-500/10 dark:border-yellow-900/20 p-5 rounded-2xl">
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 bg-amber-500/5 dark:bg-yellow-950/10 border border-amber-500/10 dark:border-yellow-900/20 p-5 rounded-2xl">
                         {exp.highlights.map(h => (
                           <div key={h.title} className="flex flex-col">
-                            <span className="text-[10px] font-semibold text-yellow-600 dark:text-yellow-400 tracking-tight mb-1 font-sans">
+                            <span className="text-[10px] font-semibold text-amber-800 dark:text-yellow-400 tracking-tight mb-1 font-sans">
                               {h.title}
                             </span>
                             <span className="text-[10px] text-neutral-600 dark:text-neutral-400 font-light leading-relaxed">
