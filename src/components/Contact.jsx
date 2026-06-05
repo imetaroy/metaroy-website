@@ -230,7 +230,7 @@ export default function Contact() {
             className={`fixed bottom-8 right-6 md:right-12 z-[100] px-6 py-4 rounded-2xl shadow-2xl border backdrop-blur-md flex items-center gap-4 max-w-sm ${
               toast.type === 'success'
                 ? 'bg-neutral-900/95 dark:bg-white/95 border-neutral-800 dark:border-neutral-200 text-white dark:text-neutral-900'
-                : 'bg-red-955/90 dark:bg-red-50/95 border-red-900/50 dark:border-red-200/80 text-red-100 dark:text-red-955'
+                : 'bg-red-50/95 dark:bg-red-950/90 border-red-200/60 dark:border-red-900/50 text-red-900 dark:text-red-200'
             }`}
           >
             <div className="flex-1 flex flex-col gap-0.5">
