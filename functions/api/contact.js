@@ -68,7 +68,44 @@ export async function onRequestPost(context) {
       { status: 400, headers: { "Content-Type": "application/json" } }
     );
   }
+  // 3.5. Spam Protection Verification (Cloudflare Turnstile)
+  const turnstileSecret = (context.env && context.env.TURNSTILE_SECRET_KEY) || "1x00000000000000000000000000000000AA";
+  const turnstileToken = data.turnstileToken;
 
+  if (!turnstileToken) {
+    return new Response(
+      JSON.stringify({ success: false, message: "Security token is missing. Please solve the challenge again." }),
+      { status: 400, headers: { "Content-Type": "application/json" } }
+    );
+  }
+
+  try {
+    const verifyResponse = await fetch("https://challenges.cloudflare.com/turnstile/v0/siteverify", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        secret: turnstileSecret,
+        response: turnstileToken,
+        remoteip: clientIP
+      })
+    });
+
+    const verifyResult = await verifyResponse.json();
+    if (!verifyResult.success) {
+      return new Response(
+        JSON.stringify({ success: false, message: "Spam verification failed. Please try again." }),
+        { status: 400, headers: { "Content-Type": "application/json" } }
+      );
+    }
+  } catch (error) {
+    console.error("Error verifying Turnstile token:", error);
+    return new Response(
+      JSON.stringify({ success: false, message: "Spam verification service error" }),
+      { status: 500, headers: { "Content-Type": "application/json" } }
+    );
+  }
   // 4. Input Sanitization
   const name = sanitize(data.name);
   const email = sanitize(data.email);

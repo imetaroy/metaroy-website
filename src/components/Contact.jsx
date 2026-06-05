@@ -111,6 +111,70 @@ export default function Contact() {
     type: 'success'
   });
 
+  // Cloudflare Turnstile spam protection integration states & refs
+  const [turnstileToken, setTurnstileToken] = useState('');
+  const turnstileRef = useRef(null);
+  const widgetIdRef = useRef(null);
+
+  useEffect(() => {
+    const scriptId = 'cloudflare-turnstile-script';
+    let script = document.getElementById(scriptId);
+
+    if (!script) {
+      script = document.createElement('script');
+      script.id = scriptId;
+      script.src = 'https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit';
+      script.async = true;
+      script.defer = true;
+      document.body.appendChild(script);
+    }
+
+    const initializeTurnstile = () => {
+      if (window.turnstile && turnstileRef.current && !widgetIdRef.current) {
+        // Fallback to Turnstile's default testing sitekey if env is empty
+        const siteKey = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY || '1x00000000000000000000AA';
+        try {
+          widgetIdRef.current = window.turnstile.render(turnstileRef.current, {
+            sitekey: siteKey,
+            callback: (token) => {
+              setTurnstileToken(token);
+              setErrors(prev => ({ ...prev, turnstile: null }));
+            },
+            'expired-callback': () => {
+              setTurnstileToken('');
+            },
+            'error-callback': () => {
+              setTurnstileToken('');
+            }
+          });
+        } catch (error) {
+          console.error("Cloudflare Turnstile render failed:", error);
+        }
+      }
+    };
+
+    if (window.turnstile) {
+      initializeTurnstile();
+    } else {
+      const interval = setInterval(() => {
+        if (window.turnstile) {
+          clearInterval(interval);
+          initializeTurnstile();
+        }
+      }, 100);
+      return () => clearInterval(interval);
+    }
+
+    return () => {
+      if (window.turnstile && widgetIdRef.current) {
+        try {
+          window.turnstile.remove(widgetIdRef.current);
+        } catch (e) {}
+        widgetIdRef.current = null;
+      }
+    };
+  }, []);
+
   // Auto-dismiss toast notification after 5 seconds
   useEffect(() => {
     if (toast.show) {
@@ -159,6 +223,10 @@ export default function Contact() {
       tempErrors.message = 'Message must be at least 20 characters';
     }
 
+    if (!turnstileToken) {
+      tempErrors.turnstile = 'Spam verification check is required';
+    }
+
     setErrors(tempErrors);
     return Object.keys(tempErrors).length === 0;
   };
@@ -178,7 +246,8 @@ export default function Contact() {
         body: JSON.stringify({
           name: formData.name.trim(),
           email: formData.email.trim(),
-          message: formData.message.trim()
+          message: formData.message.trim(),
+          turnstileToken: turnstileToken
         })
       });
 
@@ -197,6 +266,12 @@ export default function Contact() {
         });
         setFormData({ name: '', email: '', topic: '', message: '' });
         setErrors({});
+        setTurnstileToken('');
+        if (window.turnstile && widgetIdRef.current) {
+          try {
+            window.turnstile.reset(widgetIdRef.current);
+          } catch (e) {}
+        }
         trackEvent('contact_form_submit', { success: true, topic: formData.topic || 'General' });
       } else {
         setToast({
@@ -204,6 +279,12 @@ export default function Contact() {
           message: result.message || "Unable to send message",
           type: 'error'
         });
+        setTurnstileToken('');
+        if (window.turnstile && widgetIdRef.current) {
+          try {
+            window.turnstile.reset(widgetIdRef.current);
+          } catch (e) {}
+        }
         trackEvent('contact_form_submit', { success: false, error: result.message || 'Submission failure' });
       }
     } catch (error) {
@@ -212,6 +293,12 @@ export default function Contact() {
         message: "Unable to send message",
         type: 'error'
       });
+      setTurnstileToken('');
+      if (window.turnstile && widgetIdRef.current) {
+        try {
+          window.turnstile.reset(widgetIdRef.current);
+        } catch (e) {}
+      }
       trackEvent('contact_form_submit', { success: false, error: 'Network error' });
     } finally {
       setIsSubmitting(false);
@@ -235,7 +322,7 @@ export default function Contact() {
             className={`fixed bottom-8 right-6 md:right-12 z-[100] px-6 py-4 rounded-2xl shadow-2xl border backdrop-blur-md flex items-center gap-4 max-w-sm ${
               toast.type === 'success'
                 ? 'bg-neutral-900/95 dark:bg-white/95 border-neutral-800 dark:border-neutral-200 text-white dark:text-neutral-900'
-                : 'bg-red-50/95 dark:bg-red-950/90 border-red-200/60 dark:border-red-900/50 text-red-900 dark:text-red-200'
+                : 'bg-red-950/90 dark:bg-red-50/95 border-red-900/50 dark:border-red-200/80 text-red-100 dark:text-red-900'
             }`}
           >
             <div className="flex-1 flex flex-col gap-0.5">
@@ -298,7 +385,7 @@ export default function Contact() {
                     onChange={(e) => setFormData(prev => ({ ...prev, name: e.target.value }))}
                     disabled={isSubmitting}
                     placeholder="Your name"
-                    className="w-full bg-neutral-100/50 dark:bg-neutral-955/40 border border-neutral-200 dark:border-neutral-900 focus:border-neutral-500 dark:focus:border-neutral-400 rounded-xl px-4 py-2.5 text-xs sm:text-sm transition-all outline-none text-neutral-955 dark:text-white font-light placeholder:text-neutral-400 dark:placeholder:text-neutral-600"
+                    className="w-full bg-neutral-100/50 dark:bg-neutral-950/40 border border-neutral-200 dark:border-neutral-900 focus:border-neutral-500 dark:focus:border-neutral-400 rounded-xl px-4 py-2.5 text-xs sm:text-sm transition-all outline-none text-neutral-950 dark:text-white font-light placeholder:text-neutral-400 dark:placeholder:text-neutral-600"
                   />
                   {errors.name && (
                     <span className="text-[9px] text-red-500 font-mono mt-0.5">{errors.name}</span>
@@ -316,7 +403,7 @@ export default function Contact() {
                     onChange={(e) => setFormData(prev => ({ ...prev, email: e.target.value }))}
                     disabled={isSubmitting}
                     placeholder="E.g., name@domain.com"
-                    className="w-full bg-neutral-100/50 dark:bg-neutral-955/40 border border-neutral-200 dark:border-neutral-900 focus:border-neutral-500 dark:focus:border-neutral-400 rounded-xl px-4 py-2.5 text-xs sm:text-sm transition-all outline-none text-neutral-955 dark:text-white font-light placeholder:text-neutral-400 dark:placeholder:text-neutral-600"
+                    className="w-full bg-neutral-100/50 dark:bg-neutral-950/40 border border-neutral-200 dark:border-neutral-900 focus:border-neutral-500 dark:focus:border-neutral-400 rounded-xl px-4 py-2.5 text-xs sm:text-sm transition-all outline-none text-neutral-950 dark:text-white font-light placeholder:text-neutral-400 dark:placeholder:text-neutral-600"
                   />
                   {errors.email && (
                     <span className="text-[9px] text-red-500 font-mono mt-0.5">{errors.email}</span>
@@ -370,10 +457,18 @@ export default function Contact() {
                   disabled={isSubmitting}
                   placeholder="Tell me about your project, timelines, and ideas..."
                   rows={4}
-                  className="w-full bg-neutral-100/50 dark:bg-neutral-955/40 border border-neutral-200 dark:border-neutral-900 focus:border-neutral-500 dark:focus:border-neutral-400 rounded-xl px-4 py-2.5 text-xs sm:text-sm transition-all outline-none text-neutral-950 dark:text-white font-light placeholder:text-neutral-400 dark:placeholder:text-neutral-600 resize-y"
+                  className="w-full bg-neutral-100/50 dark:bg-neutral-950/40 border border-neutral-200 dark:border-neutral-900 focus:border-neutral-500 dark:focus:border-neutral-400 rounded-xl px-4 py-2.5 text-xs sm:text-sm transition-all outline-none text-neutral-950 dark:text-white font-light placeholder:text-neutral-400 dark:placeholder:text-neutral-600 resize-y"
                 />
                 {errors.message && (
                   <span className="text-[9px] text-red-500 font-mono mt-0.5">{errors.message}</span>
+                )}
+              </div>
+
+              {/* Cloudflare Turnstile Spam Protection Widget */}
+              <div className="flex flex-col items-center gap-1.5 my-1 select-none">
+                <div ref={turnstileRef} className="cf-turnstile" />
+                {errors.turnstile && (
+                  <span className="text-[9px] text-red-500 font-mono">{errors.turnstile}</span>
                 )}
               </div>
 
