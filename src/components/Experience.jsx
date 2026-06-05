@@ -1,5 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import { trackEvent } from '../utils/analytics';
 
 const EXPERIENCES = [
   {
@@ -210,6 +211,7 @@ export default function Experience() {
             >
               <a
                 href="https://drive.google.com/file/d/1NGY9ayHGpGD3R4lGvvnA2-2DngvlsCK7/view?usp=sharing"
+                onClick={() => trackEvent('cv_download', { cv_url: 'https://drive.google.com/file/d/1NGY9ayHGpGD3R4lGvvnA2-2DngvlsCK7/view?usp=sharing' })}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-full text-center text-xs font-semibold tracking-[0.15em] uppercase border border-neutral-200 dark:border-neutral-800 hover:border-neutral-400 dark:hover:border-neutral-500 bg-white dark:bg-neutral-950 py-4 rounded-full transition-all duration-300 text-neutral-600 dark:text-neutral-300 hover:text-neutral-900 dark:hover:text-white shadow-sm dark:shadow-none"

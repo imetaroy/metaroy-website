@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { trackEvent } from '../utils/analytics';
 
 const NAV_ITEMS = [
   { label: 'About', href: '#about' },
@@ -134,6 +135,7 @@ export default function Navbar() {
                   setTheme('light');
                   document.documentElement.classList.remove('dark');
                   localStorage.setItem('theme', 'light');
+                  trackEvent('theme_toggle', { theme: 'light' });
                 }}
                 className={`flex-1 z-10 flex items-center justify-center text-[9px] font-mono tracking-wider uppercase font-semibold transition-colors duration-300 focus:outline-none cursor-pointer ${
                   theme === 'light'
@@ -150,6 +152,7 @@ export default function Navbar() {
                   setTheme('dark');
                   document.documentElement.classList.add('dark');
                   localStorage.setItem('theme', 'dark');
+                  trackEvent('theme_toggle', { theme: 'dark' });
                 }}
                 className={`flex-1 z-10 flex items-center justify-center text-[9px] font-mono tracking-wider uppercase font-semibold transition-colors duration-300 focus:outline-none cursor-pointer ${
                   theme === 'dark'
@@ -163,6 +166,7 @@ export default function Navbar() {
 
             <a
               href="#contact"
+              onClick={() => trackEvent('cta_click', { cta_position: 'header_desktop' })}
               className="hidden md:inline-block text-xs font-semibold tracking-wider uppercase border border-neutral-800 dark:border-neutral-200 hover:border-neutral-700 dark:hover:border-neutral-400 bg-neutral-950 dark:bg-white px-4 py-2 rounded-full transition-all duration-300 text-neutral-300 dark:text-neutral-800 hover:text-white dark:hover:text-black"
             >
               Let's Talk
@@ -260,7 +264,10 @@ export default function Navbar() {
                   {/* "Let's Talk" CTA inside Mobile Menu */}
                   <a
                     href="#contact"
-                    onClick={() => setIsMenuOpen(false)}
+                    onClick={() => {
+                      setIsMenuOpen(false);
+                      trackEvent('cta_click', { cta_position: 'menu_mobile' });
+                    }}
                     className="text-xs font-semibold tracking-wider uppercase border border-neutral-800 dark:border-neutral-200 hover:border-neutral-700 dark:hover:border-neutral-400 bg-neutral-950 dark:bg-white px-4 py-2.5 rounded-full transition-all duration-300 text-neutral-300 dark:text-neutral-800 hover:text-white dark:hover:text-black text-center mt-2"
                   >
                     Let's Talk
@@ -280,6 +287,7 @@ export default function Navbar() {
                       setTheme('light');
                       document.documentElement.classList.remove('dark');
                       localStorage.setItem('theme', 'light');
+                      trackEvent('theme_toggle', { theme: 'light' });
                     }}
                     className={`flex-1 py-2 px-3 rounded-lg border flex items-center justify-center gap-2 text-xs font-mono font-semibold uppercase tracking-wider transition-all duration-300 cursor-pointer ${
                       theme === 'light'
@@ -299,6 +307,7 @@ export default function Navbar() {
                       setTheme('dark');
                       document.documentElement.classList.add('dark');
                       localStorage.setItem('theme', 'dark');
+                      trackEvent('theme_toggle', { theme: 'dark' });
                     }}
                     className={`flex-1 py-2 px-3 rounded-lg border flex items-center justify-center gap-2 text-xs font-mono font-semibold uppercase tracking-wider transition-all duration-300 cursor-pointer ${
                       theme === 'dark'

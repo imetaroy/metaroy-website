@@ -1,5 +1,6 @@
 import React, { useState, useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
+import { trackEvent } from '../utils/analytics';
 
 const COLLAB_CARDS = [
   {
@@ -35,6 +36,7 @@ function SocialLink({ name, url }) {
   return (
     <a
       href={url}
+      onClick={() => trackEvent('social_click', { social_platform: name, url: url })}
       target="_blank"
       rel="noopener noreferrer"
       onMouseEnter={() => setIsHovered(true)}
@@ -80,6 +82,7 @@ function CollaborationCard({ title, desc, icon, topics, idx }) {
   return (
     <motion.a
       href={mailToUrl}
+      onClick={() => trackEvent('collab_click', { collab_type: title, email: emailAddress })}
       initial={{ opacity: 0, y: 30 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-100px" }}
