@@ -1,5 +1,38 @@
-# https://www.robotstxt.org/robotstxt.html
+# Allow all standard web search crawlers and AI/LLM user-agents
 User-agent: *
 Allow: /
 
-Sitemap: https://metaroy.com/sitemap-index.xml
+# Explicit configuration for major Search Bots
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+# Explicit configuration for LLM & AI Agents
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Claude-Web
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: CohereBot
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+# Sitemap coordinates
+Sitemap: https://metaroy.com/sitemap.xml

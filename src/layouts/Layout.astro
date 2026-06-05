@@ -9,8 +9,8 @@ interface Props {
 }
 
 const {
-  title = "Prasant Roy | Marketing Systems, AI & Digital Growth",
-  description = "Building intelligent growth systems at the intersection of AI, marketing, and product. Performance marketing leader and GTM strategist.",
+  title = "Prasant Roy | Growth Systems Architect",
+  description = "I help businesses scale through growth strategy, experimentation, AI automation, and data-driven decision making. Combining engineering discipline with commercial thinking to create predictable and measurable business outcomes.",
   image = "/og-image.png", // Will default to a placeholder or generated image
   url = "https://metaroy.com",
 } = Astro.props;
@@ -44,6 +44,55 @@ const {
     <title>{title}</title>
     <meta name="title" content={title} />
     <meta name="description" content={description} />
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+    <link rel="canonical" href={url} />
+
+    <!-- Schema.org JSON-LD Structured Data for Search & LLMs -->
+    <script type="application/ld+json" is:inline>
+      {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "WebSite",
+            "@id": "https://metaroy.com/#website",
+            "url": "https://metaroy.com",
+            "name": "Prasant Roy | Growth Systems Architect",
+            "description": "Professional portfolio of Prasant Roy - Growth Systems Architect"
+          },
+          {
+            "@type": "ProfilePage",
+            "@id": "https://metaroy.com/#profilepage",
+            "url": "https://metaroy.com",
+            "name": "Prasant Roy | Growth Systems Architect",
+            "isPartOf": {
+              "@id": "https://metaroy.com/#website"
+            },
+            "about": {
+              "@id": "https://metaroy.com/#person"
+            }
+          },
+          {
+            "@type": "Person",
+            "@id": "https://metaroy.com/#person",
+            "name": "Prasant Roy",
+            "jobTitle": "Growth Systems Architect",
+            "url": "https://metaroy.com",
+            "image": "https://metaroy.com/assets/prasant-hero-polished.png",
+            "sameAs": [
+              "https://www.linkedin.com/in/prasant-roy",
+              "https://github.com/imetaroy",
+              "https://x.com/iamprasantroy"
+            ],
+            "alumniOf": {
+              "@type": "EducationalOrganization",
+              "name": "XLRI Jamshedpur",
+              "url": "https://www.xlri.ac.in"
+            },
+            "description": "I help businesses scale through growth strategy, experimentation, AI automation, and data-driven decision making. Combining engineering discipline with commercial thinking to create predictable and measurable business outcomes."
+          }
+        ]
+      }
+    </script>
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website" />
