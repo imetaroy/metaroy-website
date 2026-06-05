@@ -182,7 +182,12 @@ export default function Contact() {
         })
       });
 
-      const result = await response.json();
+      let result = {};
+      try {
+        result = await response.json();
+      } catch (e) {
+        // Fallback for HTML parsing errors (like a 500/530 error page from Cloudflare)
+      }
 
       if (response.ok && result.success) {
         setToast({

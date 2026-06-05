@@ -109,6 +109,8 @@ export async function onRequestPost(context) {
 
   // 7. Dispatch Email via Resend
   try {
+    const receiverEmail = (context.env && context.env.CONTACT_RECEIVER_EMAIL) || "prasant@metaroy.com";
+
     const resendResponse = await fetch("https://api.resend.com/emails", {
       method: "POST",
       headers: {
@@ -117,7 +119,7 @@ export async function onRequestPost(context) {
       },
       body: JSON.stringify({
         from: "Contact Form <onboarding@resend.dev>",
-        to: "prasant@metaroy.com",
+        to: receiverEmail,
         subject: `New Inquiry from ${name}`,
         reply_to: email,
         text: `Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`,
@@ -132,8 +134,21 @@ export async function onRequestPost(context) {
     } else {
       const errorText = await resendResponse.text();
       console.error(`Resend API request failed with status ${resendResponse.status}:`, errorText);
+      
+      let errorMessage = "Unable to send message";
+      try {
+        const resendError = JSON.parse(errorText);
+        if (resendError.message) {
+          errorMessage = `Resend API: ${resendError.message}`;
+        }
+      } catch (e) {
+        if (resendResponse.status === 403) {
+          errorMessage = "Resend API: Sandbox verification limits or credentials invalid (403)";
+        }
+      }
+
       return new Response(
-        JSON.stringify({ success: false, message: "Unable to send message" }),
+        JSON.stringify({ success: false, message: errorMessage }),
         { status: 502, headers: { "Content-Type": "application/json" } }
       );
     }
