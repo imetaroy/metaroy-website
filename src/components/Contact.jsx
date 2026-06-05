@@ -132,7 +132,7 @@ export default function Contact() {
     const initializeTurnstile = () => {
       if (window.turnstile && turnstileRef.current && !widgetIdRef.current) {
         // Fallback to Turnstile's default testing sitekey if env is empty
-        const siteKey = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY || '1x00000000000000000000AA';
+        const siteKey = import.meta.env.VITE_TURNSTILE_SITE_KEY || '1x00000000000000000000AA';
         try {
           widgetIdRef.current = window.turnstile.render(turnstileRef.current, {
             sitekey: siteKey,
