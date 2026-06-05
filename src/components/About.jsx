@@ -122,7 +122,7 @@ export default function About() {
             
             {/* Headline */}
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-light tracking-tight text-neutral-900 dark:text-white mb-6">
-              Building Growth <span className="text-gradient-silver font-medium">Systems That Scale</span>.
+              Turning Data Into <span className="text-gradient-silver font-medium">Revenue</span>.
             </h2>
             
             {/* Positioning Statement */}
