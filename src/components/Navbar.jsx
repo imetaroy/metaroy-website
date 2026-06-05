@@ -2,13 +2,11 @@ import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 const NAV_ITEMS = [
-  { label: 'Home', href: '#home' },
   { label: 'About', href: '#about' },
   { label: 'Experience', href: '#experience' },
   { label: 'Projects', href: '#projects' },
   { label: 'Skills', href: '#skills' },
   { label: 'Philosophy', href: '#philosophy' },
-  { label: 'Contact', href: '#contact' },
 ];
 
 export default function Navbar() {
@@ -165,7 +163,7 @@ export default function Navbar() {
 
             <a
               href="#contact"
-              className="text-xs font-semibold tracking-wider uppercase border border-neutral-800 dark:border-neutral-200 hover:border-neutral-700 dark:hover:border-neutral-400 bg-neutral-950 dark:bg-white px-4 py-2 rounded-full transition-all duration-300 text-neutral-300 dark:text-neutral-800 hover:text-white dark:hover:text-black"
+              className="hidden md:inline-block text-xs font-semibold tracking-wider uppercase border border-neutral-800 dark:border-neutral-200 hover:border-neutral-700 dark:hover:border-neutral-400 bg-neutral-950 dark:bg-white px-4 py-2 rounded-full transition-all duration-300 text-neutral-300 dark:text-neutral-800 hover:text-white dark:hover:text-black"
             >
               Let's Talk
             </a>
@@ -261,6 +259,15 @@ export default function Navbar() {
                       </a>
                     );
                   })}
+
+                  {/* "Let's Talk" CTA inside Mobile Menu */}
+                  <a
+                    href="#contact"
+                    onClick={() => setIsMenuOpen(false)}
+                    className="text-xs font-semibold tracking-wider uppercase border border-neutral-800 dark:border-neutral-200 hover:border-neutral-700 dark:hover:border-neutral-400 bg-neutral-950 dark:bg-white px-4 py-2.5 rounded-full transition-all duration-300 text-neutral-300 dark:text-neutral-800 hover:text-white dark:hover:text-black text-center mt-2"
+                  >
+                    Let's Talk
+                  </a>
                 </nav>
               </div>
 
