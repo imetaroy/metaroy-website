@@ -73,8 +73,9 @@ export async function onRequestPost(context) {
   const turnstileToken = data.turnstileToken;
 
   if (!turnstileToken) {
+    console.warn("Rejection: Turnstile token is missing from request payload.");
     return new Response(
-      JSON.stringify({ success: false, message: "Security token is missing. Please solve the challenge again." }),
+      JSON.stringify({ success: false, message: "Turnstile token is missing" }),
       { status: 400, headers: { "Content-Type": "application/json" } }
     );
   }
@@ -87,20 +88,20 @@ export async function onRequestPost(context) {
       },
       body: JSON.stringify({
         secret: turnstileSecret,
-        response: turnstileToken,
-        remoteip: clientIP
+        response: turnstileToken
       })
     });
 
     const verifyResult = await verifyResponse.json();
     if (!verifyResult.success) {
+      console.error("Turnstile siteverify validation failed. Result:", verifyResult);
       return new Response(
-        JSON.stringify({ success: false, message: "Spam verification failed. Please try again." }),
-        { status: 400, headers: { "Content-Type": "application/json" } }
+        JSON.stringify({ success: false, message: "Turnstile verification failed" }),
+        { status: 403, headers: { "Content-Type": "application/json" } }
       );
     }
   } catch (error) {
-    console.error("Error verifying Turnstile token:", error);
+    console.error("Error communicating with Cloudflare Turnstile verify API:", error);
     return new Response(
       JSON.stringify({ success: false, message: "Spam verification service error" }),
       { status: 500, headers: { "Content-Type": "application/json" } }
