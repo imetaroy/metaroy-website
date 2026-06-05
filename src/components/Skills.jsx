@@ -54,7 +54,7 @@ function SkillBar({ name, score, barColorClass, glowColor, idx, isInView }) {
 }
 
 // Career Trajectory Path Component
-function ProgressionTrack({ activeDomain, setActiveDomain }) {
+function ProgressionTrack({ activeDomain, setActiveDomain, onPhaseClick }) {
   const phases = [
     { label: 'Software Engineer', domainIdx: 2, subtitle: 'Engineering Foundation' },
     { label: 'Marketing Transformation Consultant', domainIdx: 2, subtitle: 'Digital Transformation' },
@@ -68,7 +68,7 @@ function ProgressionTrack({ activeDomain, setActiveDomain }) {
         Career Trajectory Mapping
       </div>
       
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 relative">
+      <div className="flex flex-wrap sm:grid sm:grid-cols-2 lg:grid-cols-4 gap-2 sm:gap-4 relative">
         {phases.map((phase, idx) => {
           const isHighlighted = activeDomain === phase.domainIdx;
           
@@ -77,10 +77,17 @@ function ProgressionTrack({ activeDomain, setActiveDomain }) {
               key={phase.label}
               onMouseEnter={() => setActiveDomain(phase.domainIdx)}
               onMouseLeave={() => setActiveDomain(null)}
-              className={`relative flex flex-col p-4 rounded-xl border transition-all duration-300 cursor-pointer ${
-                isHighlighted 
-                  ? 'border-neutral-400 dark:border-neutral-700 bg-white/60 dark:bg-neutral-900/30 shadow-sm dark:shadow-[0_0_20px_rgba(255,255,255,0.02)]' 
-                  : 'border-neutral-250 dark:border-neutral-900/60 bg-neutral-100/10 dark:bg-neutral-950/20 hover:border-neutral-300 dark:hover:border-neutral-800'
+              onClick={() => onPhaseClick && onPhaseClick(phase.domainIdx)}
+              className={`relative cursor-pointer transition-all duration-300 flex items-center gap-1.5 px-3 py-1.5 rounded-full border text-[11px] sm:flex-col sm:items-start sm:p-4 sm:rounded-xl sm:gap-0 ${
+                isHighlighted
+                  ? `sm:border-neutral-400 dark:sm:border-neutral-700 sm:bg-white/60 dark:sm:bg-neutral-900/30 sm:shadow-sm dark:sm:shadow-[0_0_20px_rgba(255,255,255,0.02)] ${
+                      phase.domainIdx === 0
+                        ? 'border-blue-500/45 bg-blue-500/5 dark:bg-blue-500/10 text-blue-600 dark:text-blue-400'
+                        : phase.domainIdx === 1
+                          ? 'border-violet-500/45 bg-violet-500/5 dark:bg-violet-500/10 text-violet-600 dark:text-violet-400'
+                          : 'border-cyan-500/45 bg-cyan-500/5 dark:bg-cyan-500/10 text-cyan-600 dark:text-cyan-400'
+                    }`
+                  : 'border-neutral-250 dark:border-neutral-900/60 bg-neutral-100/10 dark:bg-neutral-950/20 text-neutral-600 dark:text-neutral-400 hover:border-neutral-300 dark:hover:border-neutral-800'
               }`}
             >
               {/* Connective arrows for larger screen layouts */}
@@ -90,20 +97,22 @@ function ProgressionTrack({ activeDomain, setActiveDomain }) {
                 </div>
               )}
               
-              <div className="flex items-center gap-2">
-                <span className="font-mono text-[10px] text-neutral-500">0{idx + 1}</span>
-                <span className={`text-[11px] font-medium tracking-tight transition-colors duration-300 ${
-                  isHighlighted ? 'text-neutral-900 dark:text-white' : 'text-neutral-600 dark:text-neutral-300'
+              <div className="flex items-center gap-1.5 sm:gap-2">
+                <span className="font-mono text-[9px] text-neutral-500">0{idx + 1}</span>
+                <span className={`font-medium tracking-tight transition-colors duration-300 ${
+                  isHighlighted 
+                    ? 'sm:text-neutral-900 dark:sm:text-white' 
+                    : 'text-neutral-600 dark:text-neutral-300'
                 }`}>
                   {phase.label}
                 </span>
               </div>
-              <span className="text-[9px] text-neutral-500 dark:text-neutral-500 font-light mt-1 pl-4">
+              <span className="hidden sm:block text-[9px] text-neutral-500 dark:text-neutral-500 font-light mt-1 pl-4">
                 {phase.subtitle}
               </span>
 
               {/* Glowing active line below phase */}
-              <div className={`h-[2px] absolute bottom-0 left-4 right-4 rounded-full transition-all duration-500 ${
+              <div className={`hidden sm:block h-[2px] absolute bottom-0 left-4 right-4 rounded-full transition-all duration-500 ${
                 isHighlighted 
                   ? phase.domainIdx === 0 
                     ? 'bg-blue-500 shadow-[0_0_8px_rgba(59,130,246,0.5)]'
@@ -314,6 +323,59 @@ const SKILL_DOMAINS = [
 
 export default function Skills() {
   const [activeDomain, setActiveDomain] = useState(null);
+  const scrollContainerRef = useRef(null);
+  const cardRefs = [useRef(null), useRef(null), useRef(null)];
+
+  const handleScroll = () => {
+    if (window.innerWidth >= 1024) return;
+    if (!scrollContainerRef.current) return;
+
+    const container = scrollContainerRef.current;
+    const containerCenter = container.scrollLeft + container.clientWidth / 2;
+
+    let closestIdx = 0;
+    let minDistance = Infinity;
+
+    cardRefs.forEach((ref, idx) => {
+      const el = ref.current;
+      if (el) {
+        const cardCenter = el.offsetLeft + el.clientWidth / 2;
+        const distance = Math.abs(containerCenter - cardCenter);
+        if (distance < minDistance) {
+          minDistance = distance;
+          closestIdx = idx;
+        }
+      }
+    });
+
+    setActiveDomain(closestIdx);
+  };
+
+  const handlePhaseClick = (domainIdx) => {
+    setActiveDomain(domainIdx);
+    if (window.innerWidth < 1024) {
+      const cardEl = cardRefs[domainIdx]?.current;
+      if (cardEl) {
+        cardEl.scrollIntoView({
+          behavior: 'smooth',
+          block: 'nearest',
+          inline: 'center'
+        });
+      }
+    }
+  };
+
+  useEffect(() => {
+    const container = scrollContainerRef.current;
+    if (container) {
+      container.addEventListener('scroll', handleScroll, { passive: true });
+    }
+    return () => {
+      if (container) {
+        container.removeEventListener('scroll', handleScroll);
+      }
+    };
+  }, []);
 
   return (
     <section id="skills" className="relative min-h-screen py-24 md:py-32 px-6 border-b border-neutral-200 dark:border-neutral-900/60 z-10 overflow-hidden">
@@ -331,19 +393,61 @@ export default function Skills() {
         </div>
 
         {/* Career Trajectory Mapping */}
-        <ProgressionTrack activeDomain={activeDomain} setActiveDomain={setActiveDomain} />
+        <ProgressionTrack 
+          activeDomain={activeDomain} 
+          setActiveDomain={setActiveDomain} 
+          onPhaseClick={handlePhaseClick}
+        />
+
+        {/* Hide scrollbars style utility */}
+        <style dangerouslySetInnerHTML={{__html: `
+          .scrollbar-none::-webkit-scrollbar {
+            display: none;
+          }
+        `}} />
 
         {/* Domains Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+        <div 
+          ref={scrollContainerRef}
+          className="flex lg:grid overflow-x-auto lg:overflow-x-visible snap-x snap-mandatory lg:snap-none scrollbar-none lg:grid-cols-3 gap-6 lg:gap-8 pb-6 lg:pb-0 px-6 lg:px-0 -mx-6 lg:mx-0"
+          style={{
+            msOverflowStyle: 'none',
+            scrollbarWidth: 'none',
+          }}
+        >
           {SKILL_DOMAINS.map((domain, domainIdx) => (
-            <DomainCard
+            <div
               key={domain.category}
-              domain={domain}
-              domainIdx={domainIdx}
-              activeDomain={activeDomain}
-              setActiveDomain={setActiveDomain}
-            />
+              ref={cardRefs[domainIdx]}
+              className="snap-center shrink-0 w-[80vw] sm:w-[70vw] md:w-[55vw] lg:w-auto lg:shrink"
+            >
+              <DomainCard
+                domain={domain}
+                domainIdx={domainIdx}
+                activeDomain={activeDomain}
+                setActiveDomain={setActiveDomain}
+              />
+            </div>
           ))}
+        </div>
+
+        {/* Pagination Dots (Mobile/Tablet only) */}
+        <div className="flex lg:hidden justify-center items-center gap-2 mt-6 select-none">
+          {SKILL_DOMAINS.map((_, idx) => {
+            const isActive = activeDomain === idx || (activeDomain === null && idx === 0);
+            return (
+              <button
+                key={idx}
+                onClick={() => handlePhaseClick(idx)}
+                className={`h-1.5 rounded-full transition-all duration-300 cursor-pointer ${
+                  isActive 
+                    ? 'w-6 bg-neutral-900 dark:bg-white' 
+                    : 'w-1.5 bg-neutral-300 dark:bg-neutral-800'
+                }`}
+                aria-label={`Go to skill domain ${idx + 1}`}
+              />
+            );
+          })}
         </div>
 
       </div>

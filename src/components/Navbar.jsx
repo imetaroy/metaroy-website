@@ -68,121 +68,133 @@ export default function Navbar() {
   }, []);
 
   return (
-    <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 border-b ${
-        isScrolled
-          ? 'py-4 bg-white/70 dark:bg-black/60 backdrop-blur-md border-neutral-200/80 dark:border-neutral-900/80'
-          : 'py-6 bg-transparent border-transparent'
-      }`}
-    >
-      <div className="max-w-7xl mx-auto px-6 md:px-12 flex justify-between items-center">
-        {/* Logo Link */}
-        <a
-          href="#home"
-          className="text-base sm:text-lg font-semibold tracking-[0.25em] uppercase text-neutral-900 dark:text-white hover:text-neutral-600 dark:hover:text-neutral-300 transition-colors"
-        >
-          PRASANT ROY
-        </a>
-
-        {/* Navigation Items (Desktop) */}
-        <nav className="hidden md:flex items-center space-x-8">
-          {NAV_ITEMS.map((item) => {
-            const id = item.href.replace('#', '');
-            const isActive = activeSection === id;
-            return (
-              <a
-                key={item.href}
-                href={item.href}
-                className={`text-xs tracking-wider uppercase transition-colors relative py-1 ${
-                  isActive 
-                    ? 'text-neutral-900 dark:text-white' 
-                    : 'text-neutral-500 dark:text-neutral-400 hover:text-neutral-800 dark:hover:text-neutral-200'
-                }`}
-              >
-                {item.label}
-                {isActive && (
-                  <span className="absolute bottom-0 left-0 right-0 h-[1px] bg-neutral-900 dark:bg-white rounded-full" />
-                )}
-              </a>
-            );
-          })}
-        </nav>
-
-        {/* CTA (Header Button) & Theme Toggle */}
-        <div className="flex items-center space-x-4">
-          {/* Apple-style segmented theme slider (Desktop-only) */}
-          <div className="hidden md:flex h-8 w-32 bg-neutral-100/85 dark:bg-neutral-900/60 border border-neutral-200 dark:border-neutral-800/80 p-0.5 rounded-full relative select-none transition-colors duration-500">
-            {/* Sliding Indicator */}
-            <motion.div
-              className="absolute top-0.5 bottom-0.5 left-0.5 rounded-full bg-white dark:bg-neutral-800 shadow-sm dark:shadow-none"
-              initial={false}
-              animate={{
-                x: theme === 'light' ? '0%' : '100%',
-              }}
-              transition={{ type: 'spring', stiffness: 350, damping: 28 }}
-              style={{
-                width: 'calc(50% - 2px)',
-              }}
-            />
-
-            {/* Light Segment */}
-            <button
-              onClick={() => {
-                setTheme('light');
-                document.documentElement.classList.remove('dark');
-                localStorage.setItem('theme', 'light');
-              }}
-              className={`flex-1 z-10 flex items-center justify-center text-[9px] font-mono tracking-wider uppercase font-semibold transition-colors duration-300 focus:outline-none cursor-pointer ${
-                theme === 'light'
-                  ? 'text-neutral-950'
-                  : 'text-neutral-500 hover:text-neutral-700 dark:text-neutral-500 dark:hover:text-neutral-300'
-              }`}
-            >
-              Light
-            </button>
-
-            {/* Dark Segment */}
-            <button
-              onClick={() => {
-                setTheme('dark');
-                document.documentElement.classList.add('dark');
-                localStorage.setItem('theme', 'dark');
-              }}
-              className={`flex-1 z-10 flex items-center justify-center text-[9px] font-mono tracking-wider uppercase font-semibold transition-colors duration-300 focus:outline-none cursor-pointer ${
-                theme === 'dark'
-                  ? 'text-white'
-                  : 'text-neutral-500 hover:text-neutral-700 dark:text-neutral-500 dark:hover:text-neutral-300'
-              }`}
-            >
-              Dark
-            </button>
-          </div>
-
+    <>
+      <header
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 border-b ${
+          isScrolled
+            ? 'py-4 bg-white/70 dark:bg-black/60 backdrop-blur-md border-neutral-200/80 dark:border-neutral-900/80'
+            : 'py-6 bg-transparent border-transparent'
+        }`}
+        style={isScrolled ? {
+          WebkitBackdropFilter: 'blur(12px)',
+          backdropFilter: 'blur(12px)'
+        } : {}}
+      >
+        <div className="max-w-7xl mx-auto px-6 md:px-12 flex justify-between items-center">
+          {/* Logo Link */}
           <a
-            href="#contact"
-            className="text-xs font-semibold tracking-wider uppercase border border-neutral-800 dark:border-neutral-200 hover:border-neutral-700 dark:hover:border-neutral-400 bg-neutral-950 dark:bg-white px-4 py-2 rounded-full transition-all duration-300 text-neutral-300 dark:text-neutral-800 hover:text-white dark:hover:text-black"
+            href="#home"
+            className="text-base sm:text-lg font-semibold tracking-[0.25em] uppercase text-neutral-900 dark:text-white hover:text-neutral-600 dark:hover:text-neutral-300 transition-colors"
           >
-            Let's Talk
+            PRASANT ROY
           </a>
 
-          {/* Hamburger Menu Toggle (Mobile-only) */}
-          <button
-            onClick={() => setIsMenuOpen(!isMenuOpen)}
-            className="md:hidden flex items-center justify-center p-2 rounded-full border border-neutral-200 dark:border-neutral-800/60 text-neutral-900 dark:text-white hover:bg-neutral-100 dark:hover:bg-neutral-900 transition-colors focus:outline-none cursor-pointer"
-            aria-label="Toggle Menu"
-          >
-            {isMenuOpen ? (
-              <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
-              </svg>
-            ) : (
-              <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                <path strokeLinecap="round" strokeLinejoin="round" d="M4 6h16M4 12h16M4 18h16" />
-              </svg>
-            )}
-          </button>
+          {/* Navigation Items (Desktop) */}
+          <nav className="hidden md:flex items-center space-x-8">
+            {NAV_ITEMS.map((item) => {
+              const id = item.href.replace('#', '');
+              const isActive = activeSection === id;
+              return (
+                <a
+                  key={item.href}
+                  href={item.href}
+                  className={`text-xs tracking-wider uppercase transition-colors relative py-1 ${
+                    isActive 
+                      ? 'text-neutral-950 dark:text-white' 
+                      : 'text-neutral-500 dark:text-neutral-400 hover:text-neutral-800 dark:hover:text-neutral-200'
+                  }`}
+                >
+                  {item.label}
+                  {isActive && (
+                    <span className="absolute bottom-0 left-0 right-0 h-[1px] bg-neutral-950 dark:bg-white rounded-full" />
+                  )}
+                </a>
+              );
+            })}
+          </nav>
+
+          {/* CTA (Header Button) & Theme Toggle */}
+          <div className="flex items-center space-x-4">
+            {/* Apple-style segmented theme slider (Desktop-only) */}
+            <div className="hidden md:flex h-8 w-32 bg-neutral-100/85 dark:bg-neutral-900/60 border border-neutral-200 dark:border-neutral-800/80 p-0.5 rounded-full relative select-none transition-colors duration-500">
+              {/* Sliding Indicator */}
+              <motion.div
+                className="absolute top-0.5 bottom-0.5 left-0.5 rounded-full bg-white dark:bg-neutral-800 shadow-sm dark:shadow-none"
+                initial={false}
+                animate={{
+                  x: theme === 'light' ? '0%' : '100%',
+                }}
+                transition={{ type: 'spring', stiffness: 350, damping: 28 }}
+                style={{
+                  width: 'calc(50% - 2px)',
+                }}
+              />
+
+              {/* Light Segment */}
+              <button
+                onClick={() => {
+                  setTheme('light');
+                  document.documentElement.classList.remove('dark');
+                  localStorage.setItem('theme', 'light');
+                }}
+                className={`flex-1 z-10 flex items-center justify-center text-[9px] font-mono tracking-wider uppercase font-semibold transition-colors duration-300 focus:outline-none cursor-pointer ${
+                  theme === 'light'
+                    ? 'text-neutral-950'
+                    : 'text-neutral-500 hover:text-neutral-700 dark:text-neutral-500 dark:hover:text-neutral-300'
+                }`}
+              >
+                Light
+              </button>
+
+              {/* Dark Segment */}
+              <button
+                onClick={() => {
+                  setTheme('dark');
+                  document.documentElement.classList.add('dark');
+                  localStorage.setItem('theme', 'dark');
+                }}
+                className={`flex-1 z-10 flex items-center justify-center text-[9px] font-mono tracking-wider uppercase font-semibold transition-colors duration-300 focus:outline-none cursor-pointer ${
+                  theme === 'dark'
+                    ? 'text-white'
+                    : 'text-neutral-500 hover:text-neutral-700 dark:text-neutral-500 dark:hover:text-neutral-300'
+                }`}
+              >
+                Dark
+              </button>
+            </div>
+
+            <a
+              href="#contact"
+              className="text-xs font-semibold tracking-wider uppercase border border-neutral-800 dark:border-neutral-200 hover:border-neutral-700 dark:hover:border-neutral-400 bg-neutral-950 dark:bg-white px-4 py-2 rounded-full transition-all duration-300 text-neutral-300 dark:text-neutral-800 hover:text-white dark:hover:text-black"
+            >
+              Let's Talk
+            </a>
+
+            {/* Hamburger Menu Toggle (Mobile-only) */}
+            <button
+              onClick={() => setIsMenuOpen(!isMenuOpen)}
+              className="md:hidden flex items-center justify-center p-2 rounded-full border border-neutral-200 dark:border-neutral-800/60 text-neutral-950 dark:text-white hover:bg-neutral-100 dark:hover:bg-neutral-900 transition-colors focus:outline-none cursor-pointer"
+              aria-label="Toggle Menu"
+            >
+              {isMenuOpen ? (
+                <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+                </svg>
+              ) : (
+                <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+                </svg>
+              )}
+            </button>
+          </div>
         </div>
-      </div>
+
+        {/* Scroll Progress Line */}
+        <div
+          className="absolute bottom-0 left-0 h-[1.5px] bg-gradient-to-r from-neutral-300 via-neutral-900 to-neutral-300 dark:from-neutral-800 dark:via-neutral-400 dark:to-neutral-800 transition-all duration-100"
+          style={{ width: `${scrollProgress}%` }}
+        />
+      </header>
 
       {/* Mobile Drawer (Navigation Overlay & Sun/Moon theme toggles) */}
       <AnimatePresence>
@@ -194,7 +206,11 @@ export default function Navbar() {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               onClick={() => setIsMenuOpen(false)}
-              className="fixed inset-0 z-40 bg-black/30 dark:bg-black/50 backdrop-blur-sm md:hidden"
+              className="fixed inset-0 z-[60] bg-black/30 dark:bg-black/50 backdrop-blur-sm md:hidden"
+              style={{
+                WebkitBackdropFilter: 'blur(4px)',
+                backdropFilter: 'blur(4px)',
+              }}
             />
 
             {/* Slide-out Menu Panel */}
@@ -203,7 +219,11 @@ export default function Navbar() {
               animate={{ x: 0 }}
               exit={{ x: '100%' }}
               transition={{ type: 'spring', damping: 25, stiffness: 200 }}
-              className="fixed top-0 right-0 bottom-0 z-50 w-full max-w-[280px] bg-white dark:bg-neutral-950 border-l border-neutral-200 dark:border-neutral-900 p-6 flex flex-col justify-between md:hidden shadow-2xl"
+              className="fixed top-0 right-0 bottom-0 z-[70] w-full max-w-[280px] bg-white/90 dark:bg-neutral-950/90 border-l border-neutral-200 dark:border-neutral-900 p-6 flex flex-col justify-between md:hidden shadow-2xl"
+              style={{
+                WebkitBackdropFilter: 'blur(20px)',
+                backdropFilter: 'blur(20px)',
+              }}
             >
               <div className="flex flex-col space-y-8">
                 {/* Header inside Mobile Menu */}
@@ -213,7 +233,7 @@ export default function Navbar() {
                   </span>
                   <button
                     onClick={() => setIsMenuOpen(false)}
-                    className="p-1 rounded-full text-neutral-500 hover:text-neutral-900 dark:hover:text-white hover:bg-neutral-100 dark:hover:bg-neutral-900 transition-colors focus:outline-none cursor-pointer"
+                    className="p-1 rounded-full text-neutral-500 hover:text-neutral-950 dark:hover:text-white hover:bg-neutral-100 dark:hover:bg-neutral-900 transition-colors focus:outline-none cursor-pointer"
                   >
                     <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                       <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
@@ -293,12 +313,6 @@ export default function Navbar() {
           </>
         )}
       </AnimatePresence>
-
-      {/* Scroll Progress Line */}
-      <div
-        className="absolute bottom-0 left-0 h-[1.5px] bg-gradient-to-r from-neutral-300 via-neutral-900 to-neutral-300 dark:from-neutral-800 dark:via-neutral-400 dark:to-neutral-800 transition-all duration-100"
-        style={{ width: `${scrollProgress}%` }}
-      />
-    </header>
+    </>
   );
 }
